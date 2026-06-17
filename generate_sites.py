@@ -1378,6 +1378,20 @@ def write_html_file(file_path, html_content):
             '<meta name="monetag" content="7a3a07ab13b4bd940de8ba9bacd115d1">',
             html_content
         )
+
+    # Inject Adcash / Monetag Anti-Adblock aclib JS code right before </body> tag if not present
+    js_tag = """<script type="text/javascript">
+    aclib.runAutoTag({
+        zoneId: 'qyrn8d3vem',
+    });
+</script>"""
+    if 'qyrn8d3vem' not in html_content:
+        html_content = re.sub(
+            r'(</body>)',
+            lambda m: f"{js_tag}\n{m.group(1)}",
+            html_content,
+            flags=re.IGNORECASE
+        )
     with open(file_path, "w", encoding="utf-8") as f:
         f.write(html_content)
 
