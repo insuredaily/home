@@ -1358,9 +1358,16 @@ def update_landing_page_content(site, html_content):
     return str(soup)
 
 def write_html_file(file_path, html_content):
-    # Ensure attributes of the monetag tag are not reordered alphabetically by BeautifulSoup
-    if '7a3a07ab13b4bd940de8ba9bacd115d1' in html_content:
-        # replace any BeautifulSoup formatted meta tags for monetag
+    # If the Monetag meta tag is not present, inject it right after the <head> tag
+    if '7a3a07ab13b4bd940de8ba9bacd115d1' not in html_content:
+        html_content = re.sub(
+            r'(<head\b[^>]*>)',
+            r'\1\n<meta name="monetag" content="7a3a07ab13b4bd940de8ba9bacd115d1">',
+            html_content,
+            flags=re.IGNORECASE
+        )
+    else:
+        # Ensure attributes of the monetag tag are not reordered alphabetically by BeautifulSoup
         html_content = re.sub(
             r'<meta\s+content="7a3a07ab13b4bd940de8ba9bacd115d1"\s+name="monetag"\s*/?>',
             '<meta name="monetag" content="7a3a07ab13b4bd940de8ba9bacd115d1">',
