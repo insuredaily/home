@@ -182,10 +182,170 @@
                 </div>
             </div>
             
-            <!-- Featured Image -->
-            <div class="aspect-[16/9] w-full rounded-2xl overflow-hidden shadow-lg border border-outline-variant/10">
-                <img class="w-full h-full object-cover" src="../images/budgeting_tablet.png" alt="Smart Budgeting: How Sweepstakes Hunters Save Thousands Every Year" />
+            
+        <!-- Flowplayer Dependencies -->
+        <link rel="stylesheet" href="https://releases.flowplayer.org/7.2.7/skin/skin.css">
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <script src="https://releases.flowplayer.org/7.2.7/flowplayer.min.js"></script>
+        
+        <!-- Flowplayer Video Player -->
+        <div class="my-6 rounded-2xl overflow-hidden shadow-2xl border border-outline-variant/30 bg-black">
+            <div class="flowplayer w-full aspect-[16/9]" data-ratio="0.5625" style="background-color: #000;">
+                <video autoplay muted playsinline controls id="article-video">
+                    <source type="video/mp4" src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4">
+                    <source type="application/x-mpegurl" src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4">
+                    Your browser does not support the video tag.
+                </video>
             </div>
+        </div>
+        
+        <script>
+        $(function() {
+            var video = $("#article-video")[0];
+            if (video) {
+                // When video starts playing, show the now playing banner
+                video.addEventListener("play", function() {
+                    showNowPlaying();
+                });
+                
+                // When metadata is loaded, update duration
+                video.addEventListener("loadedmetadata", function() {
+                    updateDuration();
+                });
+                
+                // Fallback in case metadata was already loaded
+                if (video.readyState >= 1) {
+                    updateDuration();
+                }
+            }
+            
+            function showNowPlaying() {
+                var title = "Smart Budgeting: How Sweepstakes Hunters Save Thousands Every Year";
+                var durationText = "Loading...";
+                if (video && video.duration && !isNaN(video.duration)) {
+                    var mins = Math.floor(video.duration / 60);
+                    var secs = Math.floor(video.duration % 60);
+                    durationText = mins + ":" + (secs < 10 ? "0" : "") + secs;
+                }
+                
+                var banner = $("#now-playing-banner");
+                if (banner.length === 0) {
+                    banner = $("<div id='now-playing-banner' class='fixed top-0 left-0 w-full z-[9999] bg-gradient-to-r from-[#0f172a] via-[#1e293b] to-[#0f172a] text-white py-4 px-6 shadow-2xl border-b border-primary/50 flex justify-between items-center transition-all duration-500 transform -translate-y-full'></div>");
+                    $("body").append(banner);
+                }
+                
+                banner.html(
+                    "<div class='flex items-center gap-3'>" +
+                    "<span class='material-symbols-outlined text-primary animate-pulse'>play_circle</span>" +
+                    "<span class='text-sm md:text-base font-bold tracking-tight'>NOW WATCHING: <span class='text-primary'>" + title + "</span></span>" +
+                    "</div>" +
+                    "<div class='flex items-center gap-2 bg-primary/25 text-primary border border-primary/30 px-3 py-1 rounded-full text-xs font-mono font-bold'>" +
+                    "<span class='material-symbols-outlined text-xs'>schedule</span>" +
+                    "<span id='now-playing-duration'>Runtime: " + durationText + "</span>" +
+                    "</div>"
+                );
+                
+                banner.removeClass("-translate-y-full").addClass("translate-y-0");
+            }
+            
+            function updateDuration() {
+                if (video && video.duration && !isNaN(video.duration)) {
+                    var mins = Math.floor(video.duration / 60);
+                    var secs = Math.floor(video.duration % 60);
+                    var durationText = mins + ":" + (secs < 10 ? "0" : "") + secs;
+                    $("#now-playing-duration").text("Runtime: " + durationText);
+                }
+            }
+        });
+        </script>
+        
+            
+            
+        <!-- You May Also Like / Similar Videos Section -->
+        <div class="border-t border-outline-variant/20 pt-8 mt-8 space-y-4">
+            <div class="flex items-center justify-between">
+                <h3 class="text-lg font-bold text-on-surface tracking-tight uppercase flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary">video_library</span>
+                    You May Also Like
+                </h3>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+            <div class="group cursor-pointer bg-surface-container rounded-2xl overflow-hidden border border-outline-variant/10 hover:border-primary/30 hover:shadow-xl transition-all duration-300 flex flex-col" onclick="location.href='updated-capital-one-shopping-portal-adds-redemption-options.html'">
+                <!-- Video Thumbnail with Play Button Overlay -->
+                <div class="relative aspect-[16/9] w-full overflow-hidden bg-black">
+                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80" src="../images/retail_giveaways.png" alt="[Updated] Capital One Shopping Portal Adds Redemption Options" />
+                    <div class="absolute inset-0 flex items-center justify-center bg-black/25 group-hover:bg-black/10 transition-colors">
+                        <div class="w-12 h-12 rounded-full bg-primary/95 text-on-primary flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-all duration-300">
+                            <span class="material-symbols-outlined text-2xl font-bold">play_arrow</span>
+                        </div>
+                    </div>
+                    <span class="absolute bottom-2 right-2 bg-black/70 text-[10px] text-white px-2 py-0.5 rounded font-mono">VIDEO</span>
+                </div>
+                <!-- Card Content -->
+                <div class="p-4 flex-1 flex flex-col justify-between gap-3">
+                    <div class="space-y-1">
+                        <span class="text-[10px] font-bold text-primary uppercase tracking-wider">Latest Update</span>
+                        <h4 class="text-sm font-bold text-on-surface line-clamp-2 group-hover:text-primary transition-colors leading-snug">[Updated] Capital One Shopping Portal Adds Redemption Options</h4>
+                    </div>
+                    <div class="flex items-center justify-between text-[10px] text-on-surface-variant opacity-75 font-semibold">
+                        <span>By Chuck</span>
+                        <span>5 min read</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="group cursor-pointer bg-surface-container rounded-2xl overflow-hidden border border-outline-variant/10 hover:border-primary/30 hover:shadow-xl transition-all duration-300 flex flex-col" onclick="location.href='spot-real-giveaways.html'">
+                <!-- Video Thumbnail with Play Button Overlay -->
+                <div class="relative aspect-[16/9] w-full overflow-hidden bg-black">
+                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80" src="../images/retail_giveaways.png" alt="How to Spot Real Retail Giveaways: 3 Red Flags of Fake Rewards" />
+                    <div class="absolute inset-0 flex items-center justify-center bg-black/25 group-hover:bg-black/10 transition-colors">
+                        <div class="w-12 h-12 rounded-full bg-primary/95 text-on-primary flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-all duration-300">
+                            <span class="material-symbols-outlined text-2xl font-bold">play_arrow</span>
+                        </div>
+                    </div>
+                    <span class="absolute bottom-2 right-2 bg-black/70 text-[10px] text-white px-2 py-0.5 rounded font-mono">VIDEO</span>
+                </div>
+                <!-- Card Content -->
+                <div class="p-4 flex-1 flex flex-col justify-between gap-3">
+                    <div class="space-y-1">
+                        <span class="text-[10px] font-bold text-primary uppercase tracking-wider">Winners</span>
+                        <h4 class="text-sm font-bold text-on-surface line-clamp-2 group-hover:text-primary transition-colors leading-snug">How to Spot Real Retail Giveaways: 3 Red Flags of Fake Rewards</h4>
+                    </div>
+                    <div class="flex items-center justify-between text-[10px] text-on-surface-variant opacity-75 font-semibold">
+                        <span>By Jane Miller</span>
+                        <span>4 min read</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="group cursor-pointer bg-surface-container rounded-2xl overflow-hidden border border-outline-variant/10 hover:border-primary/30 hover:shadow-xl transition-all duration-300 flex flex-col" onclick="location.href='can-you-win-cash-card.html'">
+                <!-- Video Thumbnail with Play Button Overlay -->
+                <div class="relative aspect-[16/9] w-full overflow-hidden bg-black">
+                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80" src="../images/cash_card.png" alt="The Rise of Online Sweepstakes: Can You Really Win a $750 Cash Card?" />
+                    <div class="absolute inset-0 flex items-center justify-center bg-black/25 group-hover:bg-black/10 transition-colors">
+                        <div class="w-12 h-12 rounded-full bg-primary/95 text-on-primary flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-all duration-300">
+                            <span class="material-symbols-outlined text-2xl font-bold">play_arrow</span>
+                        </div>
+                    </div>
+                    <span class="absolute bottom-2 right-2 bg-black/70 text-[10px] text-white px-2 py-0.5 rounded font-mono">VIDEO</span>
+                </div>
+                <!-- Card Content -->
+                <div class="p-4 flex-1 flex flex-col justify-between gap-3">
+                    <div class="space-y-1">
+                        <span class="text-[10px] font-bold text-primary uppercase tracking-wider">Gift Cards</span>
+                        <h4 class="text-sm font-bold text-on-surface line-clamp-2 group-hover:text-primary transition-colors leading-snug">The Rise of Online Sweepstakes: Can You Really Win a $750 Cash Card?</h4>
+                    </div>
+                    <div class="flex items-center justify-between text-[10px] text-on-surface-variant opacity-75 font-semibold">
+                        <span>By Robert Chen</span>
+                        <span>5 min read</span>
+                    </div>
+                </div>
+            </div>
+            
+            </div>
+        </div>
+        
             
             <!-- Article Body -->
             <div class="prose dark:prose-invert max-w-none">
@@ -229,14 +389,65 @@
         
         <!-- Sidebar (4 columns) -->
         <aside class="lg:col-span-4 space-y-8">
+            
             <!-- Sidebar Ad Slot -->
-            <div class="w-full bg-surface-container-high border border-outline-variant/30 p-6 rounded-2xl flex flex-col items-center justify-center min-h-[250px] text-center sticky top-24">
-                <span class="text-xs text-on-surface-variant/40 tracking-widest uppercase mb-4">Partner Advertisement</span>
-                <div class="w-[300px] h-[250px] bg-surface-dim border border-dashed border-outline-variant flex items-center justify-center text-outline text-xs">
-                    300 x 250 Sidebar Banner Space
+            <div class="w-full bg-surface-container-high border border-outline-variant/30 p-6 rounded-2xl flex flex-col items-center justify-center min-h-[340px] text-center sticky top-24 shadow-md">
+                <span class="text-[10px] text-primary tracking-widest font-extrabold uppercase mb-4 flex items-center gap-1.5 justify-center">
+                    <span class="w-1.5 h-1.5 rounded-full bg-primary animate-ping"></span>
+                    Sponsored Partner
+                </span>
+                <div id="sidebar-ad-box" class="w-full min-h-[250px] bg-surface-dim border border-outline-variant/30 rounded-xl p-5 flex flex-col justify-between items-center transition-opacity duration-500 text-center">
+                    <!-- Dynamic ad content loaded by javascript -->
                 </div>
-                <button class="mt-4 text-primary text-xs font-bold hover:underline">Advertise With Us</button>
+                <div class="flex items-center justify-between w-full mt-3 px-1 text-[9px] text-on-surface-variant/40 font-mono font-bold">
+                    <span>🔄 Rotates in <span id="ad-timer">42</span>s</span>
+                    <a href="#" class="hover:underline text-primary">Advertise With Us</a>
+                </div>
             </div>
+            
+            <script>
+            $(function() {
+                var ads = [{"tag": "GIFT CARD DRAW", "title": "Guaranteed Retail Voucher Payout Entry", "desc": "Register now to claim your entry in the weekly $500 retail card sweepstakes.", "action": "CLAIM ENTRY"}, {"tag": "JACKPOT POOL", "title": "Verify Live Winners Online and Claim Tickets", "desc": "Transparent blockchain sweepstakes tracker. Open to all residents.", "action": "VERIFY STATUS"}, {"tag": "SMARTPHONE GIVEAWAY", "title": "Win a Brand New iPhone 15 Pro", "desc": "Sponsored retail giveaway entry. Free registration for a limited time.", "action": "REGISTER FREE"}];
+                var currentAdIdx = 0;
+                var timerVal = 42;
+                var timerInterval;
+                
+                function renderAd(idx) {
+                    var ad = ads[idx];
+                    var adBox = $("#sidebar-ad-box");
+                    adBox.css("opacity", 0);
+                    setTimeout(function() {
+                        adBox.html(
+                            "<span class='text-[9px] font-extrabold px-2 py-0.5 rounded bg-primary/15 text-primary uppercase tracking-wider mb-3'>" + ad.tag + "</span>" +
+                            "<h4 class='font-bold text-sm text-on-surface line-clamp-2 mb-2 leading-snug'>" + ad.title + "</h4>" +
+                            "<p class='text-xs text-on-surface-variant line-clamp-3 mb-4 leading-normal opacity-70'>" + ad.desc + "</p>" +
+                            "<button class='w-full py-2.5 bg-primary text-on-primary text-xs font-bold rounded-lg hover:opacity-90 active:scale-95 transition-all shadow-sm'>" + ad.action + "</button>"
+                        );
+                        adBox.css("opacity", 1);
+                    }, 400);
+                }
+                
+                function startAdTimer() {
+                    clearInterval(timerInterval);
+                    timerVal = 42;
+                    $("#ad-timer").text(timerVal);
+                    timerInterval = setInterval(function() {
+                        timerVal--;
+                        $("#ad-timer").text(timerVal);
+                        if (timerVal <= 0) {
+                            currentAdIdx = (currentAdIdx + 1) % ads.length;
+                            renderAd(currentAdIdx);
+                            timerVal = 42;
+                        }
+                    }, 1000);
+                }
+                
+                // Initial Render
+                renderAd(currentAdIdx);
+                startAdTimer();
+            });
+            </script>
+    
             
             <!-- Trending Sidebar -->
             <div class="glass-panel p-6 rounded-2xl border border-outline-variant/20 shadow-md space-y-6">

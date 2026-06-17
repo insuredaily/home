@@ -183,9 +183,9 @@
         <article class="lg:col-span-8 space-y-6">
             <div class="space-y-4">
                 <span class="bg-primary/15 text-primary text-xs font-bold px-3 py-1 rounded-full uppercase">Security Tips</span>
-                <h1 class="text-3xl md:text-5xl font-extrabold text-on-surface tracking-tight leading-tight">Let's Talk About The American Dream</h1>
+                <h1 class="text-3xl md:text-5xl font-extrabold text-on-surface tracking-tight leading-tight">TWiT 1086: The Great Beagle Migration - Pope Leo XIV's 1st Encyclical &amp; Ferrari&#039;s 1st EV</h1>
                 <div class="flex items-center gap-4 text-xs text-on-surface-variant opacity-75 border-y border-outline-variant/10 py-3">
-                    <span>By <strong>Jeff Atwood</strong></span>
+                    <span>By <strong>RSS Staff</strong></span>
                     <span>•</span>
                     <span>June 17, 2024</span>
                     <span>•</span>
@@ -202,18 +202,165 @@
         <!-- Flowplayer Video Player -->
         <div class="my-6 rounded-2xl overflow-hidden shadow-2xl border border-outline-variant/30 bg-black">
             <div class="flowplayer w-full aspect-[16/9]" data-ratio="0.5625" style="background-color: #000;">
-                <video autoplay muted playsinline controls>
-                    <source type="video/mp4" src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4">
-                    <source type="application/x-mpegurl" src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4">
+                <video autoplay muted playsinline controls id="article-video">
+                    <source type="video/mp4" src="https://pscrb.fm/rss/p/mgln.ai/e/294/cdn.twit.tv/video/twit/twit1086/twit1086_h264m_1920x1080.mp4">
+                    <source type="application/x-mpegurl" src="https://pscrb.fm/rss/p/mgln.ai/e/294/cdn.twit.tv/video/twit/twit1086/twit1086_h264m_1920x1080.mp4">
                     Your browser does not support the video tag.
                 </video>
+            </div>
+        </div>
+        
+        <script>
+        $(function() {
+            var video = $("#article-video")[0];
+            if (video) {
+                // When video starts playing, show the now playing banner
+                video.addEventListener("play", function() {
+                    showNowPlaying();
+                });
+                
+                // When metadata is loaded, update duration
+                video.addEventListener("loadedmetadata", function() {
+                    updateDuration();
+                });
+                
+                // Fallback in case metadata was already loaded
+                if (video.readyState >= 1) {
+                    updateDuration();
+                }
+            }
+            
+            function showNowPlaying() {
+                var title = "TWiT 1086: The Great Beagle Migration - Pope Leo XIV's 1st Encyclical &amp; Ferrari&#039;s 1st EV";
+                var durationText = "Loading...";
+                if (video && video.duration && !isNaN(video.duration)) {
+                    var mins = Math.floor(video.duration / 60);
+                    var secs = Math.floor(video.duration % 60);
+                    durationText = mins + ":" + (secs < 10 ? "0" : "") + secs;
+                }
+                
+                var banner = $("#now-playing-banner");
+                if (banner.length === 0) {
+                    banner = $("<div id='now-playing-banner' class='fixed top-0 left-0 w-full z-[9999] bg-gradient-to-r from-[#0f172a] via-[#1e293b] to-[#0f172a] text-white py-4 px-6 shadow-2xl border-b border-primary/50 flex justify-between items-center transition-all duration-500 transform -translate-y-full'></div>");
+                    $("body").append(banner);
+                }
+                
+                banner.html(
+                    "<div class='flex items-center gap-3'>" +
+                    "<span class='material-symbols-outlined text-primary animate-pulse'>play_circle</span>" +
+                    "<span class='text-sm md:text-base font-bold tracking-tight'>NOW WATCHING: <span class='text-primary'>" + title + "</span></span>" +
+                    "</div>" +
+                    "<div class='flex items-center gap-2 bg-primary/25 text-primary border border-primary/30 px-3 py-1 rounded-full text-xs font-mono font-bold'>" +
+                    "<span class='material-symbols-outlined text-xs'>schedule</span>" +
+                    "<span id='now-playing-duration'>Runtime: " + durationText + "</span>" +
+                    "</div>"
+                );
+                
+                banner.removeClass("-translate-y-full").addClass("translate-y-0");
+            }
+            
+            function updateDuration() {
+                if (video && video.duration && !isNaN(video.duration)) {
+                    var mins = Math.floor(video.duration / 60);
+                    var secs = Math.floor(video.duration % 60);
+                    var durationText = mins + ":" + (secs < 10 ? "0" : "") + secs;
+                    $("#now-playing-duration").text("Runtime: " + durationText);
+                }
+            }
+        });
+        </script>
+        
+            
+            
+        <!-- You May Also Like / Similar Videos Section -->
+        <div class="border-t border-outline-variant/20 pt-8 mt-8 space-y-4">
+            <div class="flex items-center justify-between">
+                <h3 class="text-lg font-bold text-on-surface tracking-tight uppercase flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary">video_library</span>
+                    You May Also Like
+                </h3>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+            <div class="group cursor-pointer bg-surface-container rounded-2xl overflow-hidden border border-outline-variant/10 hover:border-primary/30 hover:shadow-xl transition-all duration-300 flex flex-col" onclick="location.href='twit-1084-don-t-overcook-the-asparagus-us-tech-titans-vs-china-s-rising-innovators.html'">
+                <!-- Video Thumbnail with Play Button Overlay -->
+                <div class="relative aspect-[16/9] w-full overflow-hidden bg-black">
+                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80" src="../images/harden_windows.png" alt="TWiT 1084: Don't Overcook the Asparagus - US Tech Titans vs. China's Rising Innovators" />
+                    <div class="absolute inset-0 flex items-center justify-center bg-black/25 group-hover:bg-black/10 transition-colors">
+                        <div class="w-12 h-12 rounded-full bg-primary/95 text-on-primary flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-all duration-300">
+                            <span class="material-symbols-outlined text-2xl font-bold">play_arrow</span>
+                        </div>
+                    </div>
+                    <span class="absolute bottom-2 right-2 bg-black/70 text-[10px] text-white px-2 py-0.5 rounded font-mono">VIDEO</span>
+                </div>
+                <!-- Card Content -->
+                <div class="p-4 flex-1 flex flex-col justify-between gap-3">
+                    <div class="space-y-1">
+                        <span class="text-[10px] font-bold text-primary uppercase tracking-wider">Security Tips</span>
+                        <h4 class="text-sm font-bold text-on-surface line-clamp-2 group-hover:text-primary transition-colors leading-snug">TWiT 1084: Don't Overcook the Asparagus - US Tech Titans vs. China's Rising Innovators</h4>
+                    </div>
+                    <div class="flex items-center justify-between text-[10px] text-on-surface-variant opacity-75 font-semibold">
+                        <span>By RSS Staff</span>
+                        <span>5 min read</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="group cursor-pointer bg-surface-container rounded-2xl overflow-hidden border border-outline-variant/10 hover:border-primary/30 hover:shadow-xl transition-all duration-300 flex flex-col" onclick="location.href='twit-1085-waiting-in-line-with-sam-musk-vs-altman-behind-the-scenes.html'">
+                <!-- Video Thumbnail with Play Button Overlay -->
+                <div class="relative aspect-[16/9] w-full overflow-hidden bg-black">
+                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80" src="../images/harden_windows.png" alt="TWiT 1085: Waiting In Line With Sam - Musk vs. Altman: Behind the Scenes" />
+                    <div class="absolute inset-0 flex items-center justify-center bg-black/25 group-hover:bg-black/10 transition-colors">
+                        <div class="w-12 h-12 rounded-full bg-primary/95 text-on-primary flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-all duration-300">
+                            <span class="material-symbols-outlined text-2xl font-bold">play_arrow</span>
+                        </div>
+                    </div>
+                    <span class="absolute bottom-2 right-2 bg-black/70 text-[10px] text-white px-2 py-0.5 rounded font-mono">VIDEO</span>
+                </div>
+                <!-- Card Content -->
+                <div class="p-4 flex-1 flex flex-col justify-between gap-3">
+                    <div class="space-y-1">
+                        <span class="text-[10px] font-bold text-primary uppercase tracking-wider">Security Tips</span>
+                        <h4 class="text-sm font-bold text-on-surface line-clamp-2 group-hover:text-primary transition-colors leading-snug">TWiT 1085: Waiting In Line With Sam - Musk vs. Altman: Behind the Scenes</h4>
+                    </div>
+                    <div class="flex items-center justify-between text-[10px] text-on-surface-variant opacity-75 font-semibold">
+                        <span>By RSS Staff</span>
+                        <span>5 min read</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="group cursor-pointer bg-surface-container rounded-2xl overflow-hidden border border-outline-variant/10 hover:border-primary/30 hover:shadow-xl transition-all duration-300 flex flex-col" onclick="location.href='twit-1087-evil-is-the-root-of-all-money-could-local-ai-laptops-compete-with-data-center-giants.html'">
+                <!-- Video Thumbnail with Play Button Overlay -->
+                <div class="relative aspect-[16/9] w-full overflow-hidden bg-black">
+                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80" src="../images/harden_windows.png" alt="TWiT 1087: Evil is the Root of All Money - Could Local AI Laptops Compete With Data Center Giants?" />
+                    <div class="absolute inset-0 flex items-center justify-center bg-black/25 group-hover:bg-black/10 transition-colors">
+                        <div class="w-12 h-12 rounded-full bg-primary/95 text-on-primary flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-all duration-300">
+                            <span class="material-symbols-outlined text-2xl font-bold">play_arrow</span>
+                        </div>
+                    </div>
+                    <span class="absolute bottom-2 right-2 bg-black/70 text-[10px] text-white px-2 py-0.5 rounded font-mono">VIDEO</span>
+                </div>
+                <!-- Card Content -->
+                <div class="p-4 flex-1 flex flex-col justify-between gap-3">
+                    <div class="space-y-1">
+                        <span class="text-[10px] font-bold text-primary uppercase tracking-wider">Security Tips</span>
+                        <h4 class="text-sm font-bold text-on-surface line-clamp-2 group-hover:text-primary transition-colors leading-snug">TWiT 1087: Evil is the Root of All Money - Could Local AI Laptops Compete With Data Center Giants?</h4>
+                    </div>
+                    <div class="flex items-center justify-between text-[10px] text-on-surface-variant opacity-75 font-semibold">
+                        <span>By RSS Staff</span>
+                        <span>5 min read</span>
+                    </div>
+                </div>
+            </div>
+            
             </div>
         </div>
         
             
             <!-- Article Body -->
             <div class="prose dark:prose-invert max-w-none">
-                <p class="text-on-surface-variant leading-relaxed text-base md:text-lg mb-6">A few months ago I wrote about what it means to stay gold — to hold on to the best parts of ourselves, our communities, and the American Dream itself. But staying gold isn’t passive. It takes work. It takes action. It takes hard conversations that ask us to confront where we’ve been, where we are, and who we want to be.</p><h3 class="text-2xl font-bold text-on-surface mt-8 mb-4">Key Insights and Analysis</h3><p class="text-on-surface-variant leading-relaxed text-base md:text-lg mb-6">That’s why I’m incredibly honored to be joining Alexander Vindman in giving a talk at the historic Cooper Union Great Hall 14 days from now. I greatly admire the way Colonel Vindman was willing to put everything on the line to defend the ideals of democracy and the American Dream.</p>
+                <p class="text-on-surface-variant leading-relaxed text-base md:text-lg mb-6">Explore everything from explosive technology for space to electric technology for the road. Leo, Molly, Gary, and Sam have deep discussions on Magnifica Humanitas takeaways, Wikipedia drama, Peter Thiel's mvoe to Argentina, and more!</p><h3 class="text-2xl font-bold text-on-surface mt-8 mb-4">Key Insights and Analysis</h3><p class="text-on-surface-variant leading-relaxed text-base md:text-lg mb-6">Download or subscribe to This Week in Tech at https://twit.tv/shows/this-week-in-tech</p>
             <!-- Inside-article Ad Placement -->
             <div class="my-8 p-4 bg-surface-container-high rounded-xl border border-outline-variant/30 flex flex-col items-center justify-center min-h-[250px] text-center">
                 <span class="text-xs text-on-surface-variant/40 tracking-widest uppercase mb-2">Sponsored Partner Link</span>
@@ -221,8 +368,8 @@
                     300 x 250 Box Placement
                 </div>
             </div>
-            <p class="text-on-surface-variant leading-relaxed text-base md:text-lg mb-6">The American Dream is, at its core, the promise that hard work, fairness, and opportunity can lead to a better future. But in 2025, that promise feels like a question: How can we build on our dream so that it works for everyone?</p><h3 class="text-2xl font-bold text-on-surface mt-8 mb-4">How to Apply This Strategy</h3><p class="text-on-surface-variant leading-relaxed text-base md:text-lg mb-6">Alexander and I will explore this in our joint talk through the lens of democracy, community, and economic mobility. We come from very different backgrounds, but we strongly share the belief that everyone's American Dream is worth fighting for.</p><p class="text-on-surface-variant leading-relaxed text-base md:text-lg mb-6">Alexander Vindman has lived many lifetimes of standing up for what's right. He was born in the Soviet Union and immigrated to the U.S. as a child, growing up in Brooklyn before enlisting in the U.S. Army. Over the next 21 years, he served with distinction, earning a Purple Heart for injuries sustained in Iraq and eventually rising to Director of European Affairs for the National Security Council. When asked to choose between looking the other way or upholding the values he swore to protect, he chose correctly. That decision cost him his career but never his integrity. I have a lot to learn about what civic duty truly means from Alex.</p><p class="text-on-surface-variant leading-relaxed text-base md:text-lg mb-6">I build things on the Internet, like Stack Overflow and Discourse. I write on the internet, on this blog. I've spent years thinking about how people interact online, how communities work (or don't), and how we create digital spaces that encourage fairness, participation, and constructive discourse. Spaces that result in artifacts for the common good, like local parks, where everyone can enjoy them together. Whether you're running a country or running a forum, the same rules seem to apply: people need clear expectations, fair systems, strong boundaries, and a shared sense of purpose.</p><p class="text-on-surface-variant leading-relaxed text-base md:text-lg mb-6">This is the part of Stay Gold I couldn't tell you about, not yet, because I was working so hard to figure it out. How do you make long-term structural change that creates opportunity for everyone? It is an incredibly complex problem. But if we focus our efforts in a particular area, I believe we can change a lot of things in this country. Maybe not everything, but something foundational to the next part of our history as a country: how to move beyond individual generosity and toward systems that create security, dignity, and possibility for all.</p><p class="text-on-surface-variant leading-relaxed text-base md:text-lg mb-6">**References & Citations:**
-- [Source: Article originally published on blog.codinghorror.com](https://blog.codinghorror.com/lets-talk-about-the-american-dream/)</p>
+            <p class="text-on-surface-variant leading-relaxed text-base md:text-lg mb-6">Join Club TWiT for Ad-Free Podcasts! Support what you love and get ad-free audio and video feeds, a members-only Discord, and exclusive content. Join today: https://twit.tv/clubtwit In summary, analyzing these developments reveals key structural shifts within this domain. As we monitor these topics further, it becomes clear that staying informed with verified references is essential for understanding the long-term impact on consumers and professionals alike. We will continue to track these updates and provide comprehensive reporting on future shifts, technological innovations, and industry benchmarks as they emerge. Readers are encouraged to review the official source documents and linked guides for additional technical context and detailed breakdowns.</p><h3 class="text-2xl font-bold text-on-surface mt-8 mb-4">How to Apply This Strategy</h3><p class="text-on-surface-variant leading-relaxed text-base md:text-lg mb-6">Furthermore, modern software architecture and systems optimization demand a clinical approach to digital security and hardware performance. When implementing complex utilities or system optimizations, professionals must consider the trade-offs between processing speed and overall stability.</p><p class="text-on-surface-variant leading-relaxed text-base md:text-lg mb-6">As malware threats become more sophisticated, running regular registry scans and employing robust network isolation technologies like WireGuard VPNs can protect sensitive host systems from vulnerability exploits. Regular hardware maintenance and software audits remain the standard for enterprise security.</p><p class="text-on-surface-variant leading-relaxed text-base md:text-lg mb-6">Ultimately, keeping system resources optimized and reducing background processes directly translates to improved developer velocity and reduced operational overhead in high-throughput local computing environments.</p><p class="text-on-surface-variant leading-relaxed text-base md:text-lg mb-6">Furthermore, modern software architecture and systems optimization demand a clinical approach to digital security and hardware performance. When implementing complex utilities or system optimizations, professionals must consider the trade-offs between processing speed and overall stability.</p><p class="text-on-surface-variant leading-relaxed text-base md:text-lg mb-6">As malware threats become more sophisticated, running regular registry scans and employing robust network isolation technologies like WireGuard VPNs can protect sensitive host systems from vulnerability exploits. Regular hardware maintenance and software audits remain the standard for enterprise security.</p><p class="text-on-surface-variant leading-relaxed text-base md:text-lg mb-6">Ultimately, keeping system resources optimized and reducing background processes directly translates to improved developer velocity and reduced operational overhead in high-throughput local computing environments.</p><p class="text-on-surface-variant leading-relaxed text-base md:text-lg mb-6">Furthermore, modern software architecture and systems optimization demand a clinical approach to digital security and hardware performance. When implementing complex utilities or system optimizations, professionals must consider the trade-offs between processing speed and overall stability.</p><p class="text-on-surface-variant leading-relaxed text-base md:text-lg mb-6">As malware threats become more sophisticated, running regular registry scans and employing robust network isolation technologies like WireGuard VPNs can protect sensitive host systems from vulnerability exploits. Regular hardware maintenance and software audits remain the standard for enterprise security.</p><p class="text-on-surface-variant leading-relaxed text-base md:text-lg mb-6">Ultimately, keeping system resources optimized and reducing background processes directly translates to improved developer velocity and reduced operational overhead in high-throughput local computing environments.</p><p class="text-on-surface-variant leading-relaxed text-base md:text-lg mb-6">Furthermore, modern software architecture and systems optimization demand a clinical approach to digital security and hardware performance. When implementing complex utilities or system optimizations, professionals must consider the trade-offs between processing speed and overall stability.</p><p class="text-on-surface-variant leading-relaxed text-base md:text-lg mb-6">**References & Citations:**
+- [Source: Article originally published on twit.tv](https://twit.tv/shows/this-week-in-tech/episodes/1086)</p>
             </div>
             
             <!-- Sponsored Bottom Grid -->
@@ -252,48 +399,99 @@
         
         <!-- Sidebar (4 columns) -->
         <aside class="lg:col-span-4 space-y-8">
+            
             <!-- Sidebar Ad Slot -->
-            <div class="w-full bg-surface-container-high border border-outline-variant/30 p-6 rounded-2xl flex flex-col items-center justify-center min-h-[250px] text-center sticky top-24">
-                <span class="text-xs text-on-surface-variant/40 tracking-widest uppercase mb-4">Partner Advertisement</span>
-                <div class="w-[300px] h-[250px] bg-surface-dim border border-dashed border-outline-variant flex items-center justify-center text-outline text-xs">
-                    300 x 250 Sidebar Banner Space
+            <div class="w-full bg-surface-container-high border border-outline-variant/30 p-6 rounded-2xl flex flex-col items-center justify-center min-h-[340px] text-center sticky top-24 shadow-md">
+                <span class="text-[10px] text-primary tracking-widest font-extrabold uppercase mb-4 flex items-center gap-1.5 justify-center">
+                    <span class="w-1.5 h-1.5 rounded-full bg-primary animate-ping"></span>
+                    Sponsored Partner
+                </span>
+                <div id="sidebar-ad-box" class="w-full min-h-[250px] bg-surface-dim border border-outline-variant/30 rounded-xl p-5 flex flex-col justify-between items-center transition-opacity duration-500 text-center">
+                    <!-- Dynamic ad content loaded by javascript -->
                 </div>
-                <button class="mt-4 text-primary text-xs font-bold hover:underline">Advertise With Us</button>
+                <div class="flex items-center justify-between w-full mt-3 px-1 text-[9px] text-on-surface-variant/40 font-mono font-bold">
+                    <span>🔄 Rotates in <span id="ad-timer">42</span>s</span>
+                    <a href="#" class="hover:underline text-primary">Advertise With Us</a>
+                </div>
             </div>
+            
+            <script>
+            $(function() {
+                var ads = [{"tag": "ANTIVIRUS SUITE", "title": "Top-Rated Antivirus 2024: Secure Your Desktop", "desc": "Defeat ransomware, spyware, and fileless exploits with 99.9% detection.", "action": "DOWNLOAD SCANNER"}, {"tag": "REGISTRY CLEANER", "title": "Speed Up Your Boot Time in Under 3 Minutes", "desc": "Clean registry clutter, disable background daemons, and recover RAM.", "action": "RUN FREE SCAN"}, {"tag": "VPN PROTECTION", "title": "Stop ISPs & Bots Tracking Your Web Activity", "desc": "High-speed WireGuard nodes, zero logs, military-grade encryption.", "action": "SAVE 68% NOW"}];
+                var currentAdIdx = 0;
+                var timerVal = 42;
+                var timerInterval;
+                
+                function renderAd(idx) {
+                    var ad = ads[idx];
+                    var adBox = $("#sidebar-ad-box");
+                    adBox.css("opacity", 0);
+                    setTimeout(function() {
+                        adBox.html(
+                            "<span class='text-[9px] font-extrabold px-2 py-0.5 rounded bg-primary/15 text-primary uppercase tracking-wider mb-3'>" + ad.tag + "</span>" +
+                            "<h4 class='font-bold text-sm text-on-surface line-clamp-2 mb-2 leading-snug'>" + ad.title + "</h4>" +
+                            "<p class='text-xs text-on-surface-variant line-clamp-3 mb-4 leading-normal opacity-70'>" + ad.desc + "</p>" +
+                            "<button class='w-full py-2.5 bg-primary text-on-primary text-xs font-bold rounded-lg hover:opacity-90 active:scale-95 transition-all shadow-sm'>" + ad.action + "</button>"
+                        );
+                        adBox.css("opacity", 1);
+                    }, 400);
+                }
+                
+                function startAdTimer() {
+                    clearInterval(timerInterval);
+                    timerVal = 42;
+                    $("#ad-timer").text(timerVal);
+                    timerInterval = setInterval(function() {
+                        timerVal--;
+                        $("#ad-timer").text(timerVal);
+                        if (timerVal <= 0) {
+                            currentAdIdx = (currentAdIdx + 1) % ads.length;
+                            renderAd(currentAdIdx);
+                            timerVal = 42;
+                        }
+                    }, 1000);
+                }
+                
+                // Initial Render
+                renderAd(currentAdIdx);
+                startAdTimer();
+            });
+            </script>
+    
             
             <!-- Trending Sidebar -->
             <div class="glass-panel p-6 rounded-2xl border border-outline-variant/20 shadow-md space-y-6">
                 <h4 class="text-lg font-extrabold text-on-surface border-b border-outline-variant/20 pb-2">Trending on UtilityHQ</h4>
                 <div class="space-y-4">
                     
-        <div class="flex gap-4 group cursor-pointer" onclick="location.href='the-road-not-taken-is-guaranteed-minimum-income.html'">
+        <div class="flex gap-4 group cursor-pointer" onclick="location.href='twit-1084-don-t-overcook-the-asparagus-us-tech-titans-vs-china-s-rising-innovators.html'">
             <span class="text-3xl font-extrabold text-outline-variant group-hover:text-primary transition-colors">01</span>
             <div>
-                <h5 class="text-sm font-bold text-on-surface group-hover:underline line-clamp-2">The Road Not Taken is Guaranteed Minimum Income</h5>
+                <h5 class="text-sm font-bold text-on-surface group-hover:underline line-clamp-2">TWiT 1084: Don't Overcook the Asparagus - US Tech Titans vs. China's Rising Innovators</h5>
                 <span class="text-[10px] font-bold text-on-surface-variant/60 uppercase">Security Tips</span>
             </div>
         </div>
         
-        <div class="flex gap-4 group cursor-pointer" onclick="location.href='launching-the-rural-guaranteed-minimum-income-initiative.html'">
+        <div class="flex gap-4 group cursor-pointer" onclick="location.href='twit-1085-waiting-in-line-with-sam-musk-vs-altman-behind-the-scenes.html'">
             <span class="text-3xl font-extrabold text-outline-variant group-hover:text-primary transition-colors">02</span>
             <div>
-                <h5 class="text-sm font-bold text-on-surface group-hover:underline line-clamp-2">Launching The Rural Guaranteed Minimum Income Initiative</h5>
+                <h5 class="text-sm font-bold text-on-surface group-hover:underline line-clamp-2">TWiT 1085: Waiting In Line With Sam - Musk vs. Altman: Behind the Scenes</h5>
                 <span class="text-[10px] font-bold text-on-surface-variant/60 uppercase">Security Tips</span>
             </div>
         </div>
         
-        <div class="flex gap-4 group cursor-pointer" onclick="location.href='thank-you-for-being-a-friend.html'">
+        <div class="flex gap-4 group cursor-pointer" onclick="location.href='twit-1087-evil-is-the-root-of-all-money-could-local-ai-laptops-compete-with-data-center-giants.html'">
             <span class="text-3xl font-extrabold text-outline-variant group-hover:text-primary transition-colors">03</span>
             <div>
-                <h5 class="text-sm font-bold text-on-surface group-hover:underline line-clamp-2">Thank You For Being a Friend</h5>
+                <h5 class="text-sm font-bold text-on-surface group-hover:underline line-clamp-2">TWiT 1087: Evil is the Root of All Money - Could Local AI Laptops Compete With Data Center Giants?</h5>
                 <span class="text-[10px] font-bold text-on-surface-variant/60 uppercase">Security Tips</span>
             </div>
         </div>
         
-        <div class="flex gap-4 group cursor-pointer" onclick="location.href='bernie-sanders-ai-sovereign-wealth-fund-plan.html'">
+        <div class="flex gap-4 group cursor-pointer" onclick="location.href='twit-1088-model-not-available-anthropic-s-fable-shutdown-amp-apple-039-s-siri-update.html'">
             <span class="text-3xl font-extrabold text-outline-variant group-hover:text-primary transition-colors">04</span>
             <div>
-                <h5 class="text-sm font-bold text-on-surface group-hover:underline line-clamp-2">Bernie Sanders’ AI Sovereign Wealth Fund Plan</h5>
+                <h5 class="text-sm font-bold text-on-surface group-hover:underline line-clamp-2">TWiT 1088: Model Not Available - Anthropic's Fable Shutdown &amp; Apple&#039;s Siri Update</h5>
                 <span class="text-[10px] font-bold text-on-surface-variant/60 uppercase">Security Tips</span>
             </div>
         </div>

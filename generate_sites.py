@@ -1,6 +1,7 @@
 import os
 import re
 import sys
+import json
 from bs4 import BeautifulSoup
 
 # Define all articles for the 5 sites
@@ -685,6 +686,93 @@ def get_article_detail_body(art, site_name, trending_list):
     # Splits the article body into paragraphs, inserts headings and an ad slot
     paragraphs = art['body'].split('\n\n')
     
+    video_html = ""
+    if art.get('video_url'):
+        video_html = f"""
+        <!-- Flowplayer Dependencies -->
+        <link rel="stylesheet" href="https://releases.flowplayer.org/7.2.7/skin/skin.css">
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <script src="https://releases.flowplayer.org/7.2.7/flowplayer.min.js"></script>
+        
+        <!-- Flowplayer Video Player -->
+        <div class="my-6 rounded-2xl overflow-hidden shadow-2xl border border-outline-variant/30 bg-black">
+            <div class="flowplayer w-full aspect-[16/9]" data-ratio="0.5625" style="background-color: #000;">
+                <video autoplay muted playsinline controls id="article-video">
+                    <source type="video/mp4" src="{art['video_url']}">
+                    <source type="application/x-mpegurl" src="{art['video_url']}">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+        
+        <script>
+        $(function() {{
+            var video = $("#article-video")[0];
+            if (video) {{
+                // When video starts playing, show the now playing banner
+                video.addEventListener("play", function() {{
+                    showNowPlaying();
+                }});
+                
+                // When metadata is loaded, update duration
+                video.addEventListener("loadedmetadata", function() {{
+                    updateDuration();
+                }});
+                
+                // Fallback in case metadata was already loaded
+                if (video.readyState >= 1) {{
+                    updateDuration();
+                }}
+            }}
+            
+            function showNowPlaying() {{
+                var title = {json.dumps(art['title'])};
+                var durationText = "Loading...";
+                if (video && video.duration && !isNaN(video.duration)) {{
+                    var mins = Math.floor(video.duration / 60);
+                    var secs = Math.floor(video.duration % 60);
+                    durationText = mins + ":" + (secs < 10 ? "0" : "") + secs;
+                }}
+                
+                var banner = $("#now-playing-banner");
+                if (banner.length === 0) {{
+                    banner = $("<div id='now-playing-banner' class='fixed top-0 left-0 w-full z-[9999] bg-gradient-to-r from-[#0f172a] via-[#1e293b] to-[#0f172a] text-white py-4 px-6 shadow-2xl border-b border-primary/50 flex justify-between items-center transition-all duration-500 transform -translate-y-full'></div>");
+                    $("body").append(banner);
+                }}
+                
+                banner.html(
+                    "<div class='flex items-center gap-3'>" +
+                    "<span class='material-symbols-outlined text-primary animate-pulse'>play_circle</span>" +
+                    "<span class='text-sm md:text-base font-bold tracking-tight'>NOW WATCHING: <span class='text-primary'>" + title + "</span></span>" +
+                    "</div>" +
+                    "<div class='flex items-center gap-2 bg-primary/25 text-primary border border-primary/30 px-3 py-1 rounded-full text-xs font-mono font-bold'>" +
+                    "<span class='material-symbols-outlined text-xs'>schedule</span>" +
+                    "<span id='now-playing-duration'>Runtime: " + durationText + "</span>" +
+                    "</div>"
+                );
+                
+                banner.removeClass("-translate-y-full").addClass("translate-y-0");
+            }}
+            
+            function updateDuration() {{
+                if (video && video.duration && !isNaN(video.duration)) {{
+                    var mins = Math.floor(video.duration / 60);
+                    var secs = Math.floor(video.duration % 60);
+                    var durationText = mins + ":" + (secs < 10 ? "0" : "") + secs;
+                    $("#now-playing-duration").text("Runtime: " + durationText);
+                }}
+            }}
+        }});
+        </script>
+        """
+    else:
+        video_html = f"""
+        <!-- Featured Image -->
+        <div class="aspect-[16/9] w-full rounded-2xl overflow-hidden shadow-lg border border-outline-variant/10">
+            <img class="w-full h-full object-cover" src="../{art['image_url']}" alt="{art['title']}" />
+        </div>
+        """
+
     # Let's rebuild the body with structured layout classes, subheadings, lists, and an ad slot!
     body_html = ""
     for idx, p in enumerate(paragraphs):
@@ -824,6 +912,148 @@ def get_article_detail_body(art, site_name, trending_list):
         </div>
         """
 
+    # Generate native ads JSON
+    site_ads = []
+    if "Utility" in site_name:
+        site_ads = [
+            {"tag": "ANTIVIRUS SUITE", "title": "Top-Rated Antivirus 2024: Secure Your Desktop", "desc": "Defeat ransomware, spyware, and fileless exploits with 99.9% detection.", "action": "DOWNLOAD SCANNER"},
+            {"tag": "REGISTRY CLEANER", "title": "Speed Up Your Boot Time in Under 3 Minutes", "desc": "Clean registry clutter, disable background daemons, and recover RAM.", "action": "RUN FREE SCAN"},
+            {"tag": "VPN PROTECTION", "title": "Stop ISPs & Bots Tracking Your Web Activity", "desc": "High-speed WireGuard nodes, zero logs, military-grade encryption.", "action": "SAVE 68% NOW"}
+        ]
+    elif "Win" in site_name:
+        site_ads = [
+            {"tag": "GIFT CARD DRAW", "title": "Guaranteed Retail Voucher Payout Entry", "desc": "Register now to claim your entry in the weekly $500 retail card sweepstakes.", "action": "CLAIM ENTRY"},
+            {"tag": "JACKPOT POOL", "title": "Verify Live Winners Online and Claim Tickets", "desc": "Transparent blockchain sweepstakes tracker. Open to all residents.", "action": "VERIFY STATUS"},
+            {"tag": "SMARTPHONE GIVEAWAY", "title": "Win a Brand New iPhone 15 Pro", "desc": "Sponsored retail giveaway entry. Free registration for a limited time.", "action": "REGISTER FREE"}
+        ]
+    elif "Capital" in site_name:
+        site_ads = [
+            {"tag": "GOLD RETIREMENT", "title": "Gold IRA Investor Guide: Safeguard Wealth", "desc": "Get a free info kit on moving retirement funds into physical gold.", "action": "GET FREE KIT"},
+            {"tag": "STAKING PROTOCOLS", "title": "Earn Up to 12% APY on Crypto Assets", "desc": "DeFi staking platforms audited by top cybersecurity agencies.", "action": "START STAKING"},
+            {"tag": "BILLIONAIRE SECRETS", "title": "Habits of Ultra-High-Net-Worth Investors", "desc": "Free checklist: asset allocation strategies of self-made billionaires.", "action": "DOWNLOAD GUIDE"}
+        ]
+    elif "BetPlay" in site_name:
+        site_ads = [
+            {"tag": "REGISTRATION BONUS", "title": "Get 100% Matched Sign-Up Bonus Up to $500", "desc": "Instant double deposits for sports and casino gaming accounts.", "action": "REGISTER NOW"},
+            {"tag": "FREE VOUCHER", "title": "Play Free Slots and Win Real Cash Vouchers", "desc": "Mobile compatible portal, no download required. High payouts.", "action": "CLAIM VOUCHER"},
+            {"tag": "SPORTS FORECASTS", "title": "Double Your Win Rate with Predictive ML", "desc": "Get direct feeds from our proprietary sports analytics engine.", "action": "GET EDGE TODAY"}
+        ]
+    else:  # ViralBuzz
+        site_ads = [
+            {"tag": "VIRAL LIFE HACKS", "title": "Simple Morning Tea Habit Melts Body Fat", "desc": "Discover the antioxidant listicle that nutritionists don't want you to see.", "action": "READ LISTICLE"},
+            {"tag": "BUDGET FLIGHTS", "title": "Cheap Flight Search Engine: Tickets Under $100", "desc": "Get roundtrip deals to Europe, Asia, and Caribbean destinations.", "action": "FIND DEALS"},
+            {"tag": "PHONE GADGETS", "title": "5 Accessories to Double Your Smartphone Convenience", "desc": "Must-have tools for content creators and travel bloggers.", "action": "SHOP OFFERS"}
+        ]
+
+    sidebar_ad_slot = f"""
+            <!-- Sidebar Ad Slot -->
+            <div class="w-full bg-surface-container-high border border-outline-variant/30 p-6 rounded-2xl flex flex-col items-center justify-center min-h-[340px] text-center sticky top-24 shadow-md">
+                <span class="text-[10px] text-primary tracking-widest font-extrabold uppercase mb-4 flex items-center gap-1.5 justify-center">
+                    <span class="w-1.5 h-1.5 rounded-full bg-primary animate-ping"></span>
+                    Sponsored Partner
+                </span>
+                <div id="sidebar-ad-box" class="w-full min-h-[250px] bg-surface-dim border border-outline-variant/30 rounded-xl p-5 flex flex-col justify-between items-center transition-opacity duration-500 text-center">
+                    <!-- Dynamic ad content loaded by javascript -->
+                </div>
+                <div class="flex items-center justify-between w-full mt-3 px-1 text-[9px] text-on-surface-variant/40 font-mono font-bold">
+                    <span>🔄 Rotates in <span id="ad-timer">42</span>s</span>
+                    <a href="#" class="hover:underline text-primary">Advertise With Us</a>
+                </div>
+            </div>
+            
+            <script>
+            $(function() {{
+                var ads = {json.dumps(site_ads)};
+                var currentAdIdx = 0;
+                var timerVal = 42;
+                var timerInterval;
+                
+                function renderAd(idx) {{
+                    var ad = ads[idx];
+                    var adBox = $("#sidebar-ad-box");
+                    adBox.css("opacity", 0);
+                    setTimeout(function() {{
+                        adBox.html(
+                            "<span class='text-[9px] font-extrabold px-2 py-0.5 rounded bg-primary/15 text-primary uppercase tracking-wider mb-3'>" + ad.tag + "</span>" +
+                            "<h4 class='font-bold text-sm text-on-surface line-clamp-2 mb-2 leading-snug'>" + ad.title + "</h4>" +
+                            "<p class='text-xs text-on-surface-variant line-clamp-3 mb-4 leading-normal opacity-70'>" + ad.desc + "</p>" +
+                            "<button class='w-full py-2.5 bg-primary text-on-primary text-xs font-bold rounded-lg hover:opacity-90 active:scale-95 transition-all shadow-sm'>" + ad.action + "</button>"
+                        );
+                        adBox.css("opacity", 1);
+                    }}, 400);
+                }}
+                
+                function startAdTimer() {{
+                    clearInterval(timerInterval);
+                    timerVal = 42;
+                    $("#ad-timer").text(timerVal);
+                    timerInterval = setInterval(function() {{
+                        timerVal--;
+                        $("#ad-timer").text(timerVal);
+                        if (timerVal <= 0) {{
+                            currentAdIdx = (currentAdIdx + 1) % ads.length;
+                            renderAd(currentAdIdx);
+                            timerVal = 42;
+                        }}
+                    }}, 1000);
+                }}
+                
+                // Initial Render
+                renderAd(currentAdIdx);
+                startAdTimer();
+            }});
+            </script>
+    """
+
+    similar_videos_html = ""
+    similar_arts = trending_list[:3]
+    if similar_arts:
+        cards_html = ""
+        for s_art in similar_arts:
+            img_path = f"../{s_art['image_url']}"
+            link_path = f"{s_art['slug']}.html"
+            
+            cards_html += f"""
+            <div class="group cursor-pointer bg-surface-container rounded-2xl overflow-hidden border border-outline-variant/10 hover:border-primary/30 hover:shadow-xl transition-all duration-300 flex flex-col" onclick="location.href='{link_path}'">
+                <!-- Video Thumbnail with Play Button Overlay -->
+                <div class="relative aspect-[16/9] w-full overflow-hidden bg-black">
+                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80" src="{img_path}" alt="{s_art['title']}" />
+                    <div class="absolute inset-0 flex items-center justify-center bg-black/25 group-hover:bg-black/10 transition-colors">
+                        <div class="w-12 h-12 rounded-full bg-primary/95 text-on-primary flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-all duration-300">
+                            <span class="material-symbols-outlined text-2xl font-bold">play_arrow</span>
+                        </div>
+                    </div>
+                    <span class="absolute bottom-2 right-2 bg-black/70 text-[10px] text-white px-2 py-0.5 rounded font-mono">VIDEO</span>
+                </div>
+                <!-- Card Content -->
+                <div class="p-4 flex-1 flex flex-col justify-between gap-3">
+                    <div class="space-y-1">
+                        <span class="text-[10px] font-bold text-primary uppercase tracking-wider">{s_art['category']}</span>
+                        <h4 class="text-sm font-bold text-on-surface line-clamp-2 group-hover:text-primary transition-colors leading-snug">{s_art['title']}</h4>
+                    </div>
+                    <div class="flex items-center justify-between text-[10px] text-on-surface-variant opacity-75 font-semibold">
+                        <span>By {s_art['author']}</span>
+                        <span>{s_art['read_time']}</span>
+                    </div>
+                </div>
+            </div>
+            """
+            
+        similar_videos_html = f"""
+        <!-- You May Also Like / Similar Videos Section -->
+        <div class="border-t border-outline-variant/20 pt-8 mt-8 space-y-4">
+            <div class="flex items-center justify-between">
+                <h3 class="text-lg font-bold text-on-surface tracking-tight uppercase flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary">video_library</span>
+                    You May Also Like
+                </h3>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {cards_html}
+            </div>
+        </div>
+        """
+
     return f"""
 <div class="max-w-7xl mx-auto px-4 py-12 md:py-20">
     <!-- Breadcrumbs -->
@@ -850,10 +1080,9 @@ def get_article_detail_body(art, site_name, trending_list):
                 </div>
             </div>
             
-            <!-- Featured Image -->
-            <div class="aspect-[16/9] w-full rounded-2xl overflow-hidden shadow-lg border border-outline-variant/10">
-                <img class="w-full h-full object-cover" src="../{art['image_url']}" alt="{art['title']}" />
-            </div>
+            {video_html}
+            
+            {similar_videos_html}
             
             <!-- Article Body -->
             <div class="prose dark:prose-invert max-w-none">
@@ -869,14 +1098,7 @@ def get_article_detail_body(art, site_name, trending_list):
         
         <!-- Sidebar (4 columns) -->
         <aside class="lg:col-span-4 space-y-8">
-            <!-- Sidebar Ad Slot -->
-            <div class="w-full bg-surface-container-high border border-outline-variant/30 p-6 rounded-2xl flex flex-col items-center justify-center min-h-[250px] text-center sticky top-24">
-                <span class="text-xs text-on-surface-variant/40 tracking-widest uppercase mb-4">Partner Advertisement</span>
-                <div class="w-[300px] h-[250px] bg-surface-dim border border-dashed border-outline-variant flex items-center justify-center text-outline text-xs">
-                    300 x 250 Sidebar Banner Space
-                </div>
-                <button class="mt-4 text-primary text-xs font-bold hover:underline">Advertise With Us</button>
-            </div>
+            {sidebar_ad_slot}
             
             <!-- Trending Sidebar -->
             <div class="glass-panel p-6 rounded-2xl border border-outline-variant/20 shadow-md space-y-6">
@@ -1161,7 +1383,19 @@ def main():
         except Exception as e:
             print(f"Error loading custom articles: {e}", file=sys.stderr)
 
-    
+    # Populate theme-specific default video URLs for each site if not already present
+    default_videos = {
+        "UtilityHQ": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+        "WinDaily": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
+        "CapitalQuest": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+        "BetPlayHub": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4",
+        "ViralBuzz": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4"
+    }
+    for site, articles in ARTICLES_DATA.items():
+        for art in articles:
+            if not art.get('video_url'):
+                art['video_url'] = default_videos.get(site)
+
     site_meta = {
         "UtilityHQ": {
             "domain": "utilityhq.com",
