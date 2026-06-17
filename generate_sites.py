@@ -1139,6 +1139,29 @@ def update_landing_page_content(site, html_content):
 def main():
     sites = ["UtilityHQ", "WinDaily", "CapitalQuest", "BetPlayHub", "ViralBuzz"]
     
+    # Load custom articles from RSS feeds if file exists
+    custom_path = "custom_articles.json"
+    if os.path.exists(custom_path):
+        import json
+        try:
+            with open(custom_path, "r", encoding="utf-8") as f:
+                custom_data = json.load(f)
+            for site, articles in custom_data.items():
+                if site in ARTICLES_DATA:
+                    for art in articles:
+                        # Prevent duplicate slugs
+                        existing = [x for x in ARTICLES_DATA[site] if x['slug'] == art['slug']]
+                        if not existing:
+                            # Prepend to keep newest RSS articles at the top of the list
+                            ARTICLES_DATA[site].insert(0, art)
+                        else:
+                            existing_idx = ARTICLES_DATA[site].index(existing[0])
+                            ARTICLES_DATA[site][existing_idx] = art
+            print(f"Loaded and merged custom articles from {custom_path}")
+        except Exception as e:
+            print(f"Error loading custom articles: {e}", file=sys.stderr)
+
+    
     site_meta = {
         "UtilityHQ": {
             "domain": "utilityhq.com",
