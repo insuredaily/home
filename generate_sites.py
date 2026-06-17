@@ -1357,6 +1357,23 @@ def update_landing_page_content(site, html_content):
 
     return str(soup)
 
+def write_html_file(file_path, html_content):
+    # Ensure attributes of the monetag tag are not reordered alphabetically by BeautifulSoup
+    if '7a3a07ab13b4bd940de8ba9bacd115d1' in html_content:
+        # replace any BeautifulSoup formatted meta tags for monetag
+        html_content = re.sub(
+            r'<meta\s+content="7a3a07ab13b4bd940de8ba9bacd115d1"\s+name="monetag"\s*/?>',
+            '<meta name="monetag" content="7a3a07ab13b4bd940de8ba9bacd115d1">',
+            html_content
+        )
+        html_content = re.sub(
+            r'<meta\s+name="monetag"\s+content="7a3a07ab13b4bd940de8ba9bacd115d1"\s*/?>',
+            '<meta name="monetag" content="7a3a07ab13b4bd940de8ba9bacd115d1">',
+            html_content
+        )
+    with open(file_path, "w", encoding="utf-8") as f:
+        f.write(html_content)
+
 
 def main():
     sites = ["UtilityHQ", "WinDaily", "CapitalQuest", "BetPlayHub", "ViralBuzz"]
@@ -1456,8 +1473,7 @@ def main():
         linked_index = update_landing_page_content(site, linked_index)
             
         # Write back updated index.html
-        with open(index_path, "w", encoding="utf-8") as f:
-            f.write(linked_index)
+        write_html_file(index_path, linked_index)
         print(f"  Updated links in {index_path}")
         
         # Extract header and footer layouts
@@ -1467,26 +1483,22 @@ def main():
         # About Page
         about_body = get_about_body(site, site_meta[site]['domain'], site_meta[site]['type'])
         about_html = generate_subpage(header, footer, about_body)
-        with open(os.path.join(site, "about.html"), "w", encoding="utf-8") as f:
-            f.write(about_html)
+        write_html_file(os.path.join(site, "about.html"), about_html)
             
         # Privacy Policy Page
         privacy_body = get_privacy_body(site, site_meta[site]['domain'])
         privacy_html = generate_subpage(header, footer, privacy_body)
-        with open(os.path.join(site, "privacy.html"), "w", encoding="utf-8") as f:
-            f.write(privacy_html)
+        write_html_file(os.path.join(site, "privacy.html"), privacy_html)
             
         # Terms of Service Page
         terms_body = get_terms_body(site, site_meta[site]['domain'])
         terms_html = generate_subpage(header, footer, terms_body)
-        with open(os.path.join(site, "terms.html"), "w", encoding="utf-8") as f:
-            f.write(terms_html)
+        write_html_file(os.path.join(site, "terms.html"), terms_html)
             
         # Explore Page
         explore_body = get_explore_body(site, ARTICLES_DATA[site])
         explore_html = generate_subpage(header, footer, explore_body)
-        with open(os.path.join(site, "explore.html"), "w", encoding="utf-8") as f:
-            f.write(explore_html)
+        write_html_file(os.path.join(site, "explore.html"), explore_html)
             
         print(f"  Generated secondary pages (about.html, privacy.html, terms.html, explore.html) for {site}")
         
@@ -1502,8 +1514,7 @@ def main():
             art_html = generate_subpage(header, footer, art_body, depth=1)
             
             art_file_path = os.path.join(articles_dir, f"{art['slug']}.html")
-            with open(art_file_path, "w", encoding="utf-8") as f:
-                f.write(art_html)
+            write_html_file(art_file_path, art_html)
                 
             print(f"    Generated article: {art_file_path}")
             
