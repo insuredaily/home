@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>UtilityHQ | Professional Software Reviews &amp; Optimization</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Geist:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            background-color: #051424; /* surface-dim */
+            color: #d4e4fa; /* on-surface */
+            font-family: 'Inter', sans-serif;
+        }
+        .glass-surface {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(76, 215, 246, 0.1);
+        }
+        .neon-glow:hover {
+            box-shadow: 0 0 20px rgba(75, 226, 119, 0.4);
+        }
+        .cyan-glow:hover {
+            box-shadow: 0 0 15px rgba(76, 215, 246, 0.3);
+        }
+        .mono-font {
+            font-family: 'Geist', monospace;
+        }
+        @keyframes scan-line {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(400%); }
+        }
+        .scanner-line {
+            animation: scan-line 3s linear infinite;
+        }
+        .progress-fill {
+            transition: width 1s ease-in-out;
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed-variant": "#005321",
+                    "error-container": "#93000a",
+                    "tertiary-container": "#ff8b7c",
+                    "surface-variant": "#273647",
+                    "tertiary-fixed-dim": "#ffb4a9",
+                    "on-secondary": "#003640",
+                    "on-primary-fixed": "#002109",
+                    "inverse-primary": "#006e2f",
+                    "tertiary-fixed": "#ffdad5",
+                    "on-secondary-fixed": "#001f26",
+                    "surface-dim": "#051424",
+                    "on-error": "#690005",
+                    "on-tertiary-container": "#76231b",
+                    "on-primary": "#003915",
+                    "on-tertiary-fixed": "#410001",
+                    "secondary-fixed-dim": "#4cd7f6",
+                    "surface-container-highest": "#273647",
+                    "surface-container-high": "#1c2b3c",
+                    "on-background": "#d4e4fa",
+                    "secondary-container": "#03b5d3",
+                    "error": "#ffb4ab",
+                    "on-primary-container": "#004b1e",
+                    "secondary-fixed": "#acedff",
+                    "outline-variant": "#3d4a3d",
+                    "outline": "#869585",
+                    "surface-container": "#122131",
+                    "inverse-surface": "#d4e4fa",
+                    "primary-fixed": "#6bff8f",
+                    "on-secondary-fixed-variant": "#004e5c",
+                    "background": "#051424",
+                    "secondary": "#4cd7f6",
+                    "on-secondary-container": "#00424e",
+                    "surface-container-lowest": "#010f1f",
+                    "primary": "#4be277",
+                    "surface": "#051424",
+                    "on-surface": "#d4e4fa",
+                    "primary-container": "#22c55e",
+                    "on-surface-variant": "#bccbb9",
+                    "on-tertiary": "#60130d",
+                    "surface-container-low": "#0d1c2d",
+                    "tertiary": "#ffb5ab",
+                    "on-error-container": "#ffdad6",
+                    "on-tertiary-fixed-variant": "#7f2a21",
+                    "primary-fixed-dim": "#4ae176",
+                    "surface-tint": "#4ae176",
+                    "inverse-on-surface": "#233143",
+                    "surface-bright": "#2c3a4c"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "container-max": "1280px",
+                    "xs": "8px",
+                    "xl": "80px",
+                    "sm": "16px",
+                    "base": "4px",
+                    "lg": "48px",
+                    "gutter": "24px",
+                    "md": "24px"
+            },
+            "fontFamily": {
+                    "headline-lg-mobile": ["Geist"],
+                    "body-lg": ["Inter"],
+                    "label-md": ["Geist"],
+                    "body-md": ["Inter"],
+                    "mono-sm": ["Geist"],
+                    "headline-xl": ["Geist"],
+                    "headline-lg": ["Geist"],
+                    "headline-md": ["Geist"]
+            },
+            "fontSize": {
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "mono-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                    "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="overflow-x-hidden">
+<!-- Top Ad Banner -->
+<div class="w-full bg-surface-container-lowest py-base flex justify-center items-center border-b border-secondary/10 h-[90px]">
+<div class="w-[728px] h-[90px] bg-surface-container-high flex flex-col items-center justify-center border border-dashed border-outline-variant rounded-lg group cursor-pointer transition-colors hover:bg-surface-container-highest">
+<span class="text-on-surface-variant font-label-md text-label-md uppercase tracking-widest">Advertisement</span>
+<span class="text-outline text-xs mt-1">728 x 90 Sponsor Placement</span>
+</div>
+</div>
+<!-- Header / TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/60 dark:bg-surface/60 backdrop-blur-xl border-b border-secondary/30 shadow-xl shadow-surface-dim/40 mt-[90px]">
+<div class="flex justify-between items-center px-gutter py-sm max-w-container-max mx-auto">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary cursor-pointer active:scale-95">menu</span>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary tracking-tighter cursor-pointer">UtilityHQ</h1>
+</div>
+<nav class="hidden md:flex items-center gap-md">
+<a class="font-body-md text-body-md text-primary dark:text-primary font-bold cursor-pointer active:scale-95 transition-all duration-300" href="index.html">Home</a>
+<a class="font-body-md text-body-md text-on-surface dark:text-on-surface hover:text-primary transition-all duration-300 cursor-pointer active:scale-95" href="#">Security Tips</a>
+<a class="font-body-md text-body-md text-on-surface dark:text-on-surface hover:text-primary transition-all duration-300 cursor-pointer active:scale-95" href="#">VPN Speeds</a>
+<a class="font-body-md text-body-md text-on-surface dark:text-on-surface hover:text-primary transition-all duration-300 cursor-pointer active:scale-95" href="#">Tools</a>
+</nav>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-on-surface cursor-pointer active:scale-95">search</span>
+<button class="hidden sm:block bg-primary text-on-primary font-label-md text-label-md px-sm py-base rounded-full hover:backdrop-blur-2xl transition-all duration-300 active:scale-95">Sign In</button>
+</div>
+</div>
+</header>
+<main class="pt-[160px]">
+<!-- Hero Section -->
+<section class="max-w-container-max mx-auto px-gutter mb-xl relative overflow-hidden">
+<!-- Background Decoration -->
+<div class="absolute -top-40 -right-40 w-96 h-96 bg-primary/10 blur-[120px] rounded-full"></div>
+<div class="absolute -bottom-40 -left-40 w-96 h-96 bg-secondary/10 blur-[120px] rounded-full"></div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-lg items-center relative z-10">
+<div class="flex flex-col gap-md">
+<span class="text-secondary font-label-md text-label-md uppercase tracking-[0.2em] animate-pulse">System Protection v4.2.1</span>
+<h2 class="font-headline-xl text-headline-xl text-on-surface leading-tight">Your PC, <span class="text-primary">Optimized</span> &amp; Secured Beyond Limits.</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">UtilityHQ provides clinical, high-performance software reviews for tech professionals. Scan, clean, and accelerate your workflow with our verified utility suite.</p>
+<div class="flex flex-col sm:flex-row gap-sm mt-sm">
+<button class="bg-primary-container text-on-primary-container font-headline-md text-headline-md px-lg py-md rounded-lg flex items-center justify-center gap-xs neon-glow transition-all duration-300 active:scale-95 group">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">download</span>
+                            Download Security Cleaner
+                        </button>
+</div>
+<!-- Quick Links -->
+<div class="flex flex-wrap gap-md mt-lg border-t border-secondary/20 pt-md">
+<a class="flex items-center gap-xs text-secondary hover:text-primary transition-colors font-label-md text-label-md group" href="#">
+<span class="material-symbols-outlined text-sm">security</span> Antivirus Guides
+                            <span class="material-symbols-outlined text-xs group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+<a class="flex items-center gap-xs text-secondary hover:text-primary transition-colors font-label-md text-label-md group" href="#">
+<span class="material-symbols-outlined text-sm">speed</span> Speed Up VPN
+                            <span class="material-symbols-outlined text-xs group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+<a class="flex items-center gap-xs text-secondary hover:text-primary transition-colors font-label-md text-label-md group" href="#">
+<span class="material-symbols-outlined text-sm">extension</span> Browser Extensions
+                            <span class="material-symbols-outlined text-xs group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Dynamic Scan Mock-up -->
+<div class="relative">
+<div class="glass-surface p-lg rounded-xl border border-secondary/20 relative overflow-hidden">
+<!-- Scanning Animation Line -->
+<div class="absolute top-0 left-0 w-full h-[2px] bg-primary scanner-line blur-sm z-20"></div>
+<div class="flex justify-between items-center mb-md">
+<div class="flex items-center gap-xs">
+<div class="w-3 h-3 bg-primary rounded-full animate-pulse"></div>
+<span class="font-mono-sm text-mono-sm text-primary uppercase">Live System Scan</span>
+</div>
+<span class="font-mono-sm text-mono-sm text-on-surface-variant">Host: 192.168.1.104</span>
+</div>
+<div class="space-y-sm">
+<!-- Progress Bar 1 -->
+<div class="space-y-base">
+<div class="flex justify-between font-mono-sm text-mono-sm">
+<span class="text-on-surface">Registry Integrity</span>
+<span class="text-primary" id="prog1-val">87%</span>
+</div>
+<div class="w-full bg-surface-variant h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full progress-fill" id="prog1" style="width: 87%"></div>
+</div>
+</div>
+<!-- Progress Bar 2 -->
+<div class="space-y-base">
+<div class="flex justify-between font-mono-sm text-mono-sm">
+<span class="text-on-surface">Malware Shielding</span>
+<span class="text-secondary" id="prog2-val">94%</span>
+</div>
+<div class="w-full bg-surface-variant h-2 rounded-full overflow-hidden">
+<div class="bg-secondary h-full progress-fill" id="prog2" style="width: 94%"></div>
+</div>
+</div>
+<!-- Progress Bar 3 -->
+<div class="space-y-base">
+<div class="flex justify-between font-mono-sm text-mono-sm">
+<span class="text-on-surface">Data Redundancy Check</span>
+<span class="text-error" id="prog3-val">42%</span>
+</div>
+<div class="w-full bg-surface-variant h-2 rounded-full overflow-hidden">
+<div class="bg-error h-full progress-fill" id="prog3" style="width: 42%"></div>
+</div>
+</div>
+</div>
+<div class="mt-md pt-md border-t border-outline-variant flex flex-col gap-xs">
+<p class="font-mono-sm text-mono-sm text-on-surface-variant">Terminal Log:</p>
+<div class="bg-surface-container-lowest p-sm rounded font-mono-sm text-mono-sm text-primary/80 h-32 overflow-hidden flex flex-col gap-1">
+<div>&gt; Executing deep_sector_scan...</div>
+<div>&gt; Buffer overflow detected at segment 0x04.</div>
+<div>&gt; Patching vulnerability. Done.</div>
+<div>&gt; [INFO] System latency reduced by 14ms.</div>
+<div class="animate-pulse">&gt; _</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Main Content Area -->
+<section class="max-w-container-max mx-auto px-gutter grid grid-cols-1 lg:grid-cols-12 gap-lg pb-xl">
+<!-- Content Grid (8 Columns) -->
+<div class="lg:col-span-9">
+<div class="flex items-center justify-between mb-lg">
+<h3 class="font-headline-lg text-headline-lg text-on-surface">Latest Expert Reviews</h3>
+<div class="flex gap-xs">
+<button class="p-base bg-surface-container hover:bg-primary/20 rounded transition-colors"><span class="material-symbols-outlined">grid_view</span></button>
+<button class="p-base bg-surface-container hover:bg-primary/20 rounded transition-colors"><span class="material-symbols-outlined">view_list</span></button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-md">
+<!-- Card 1 -->
+<div class="glass-surface rounded-xl overflow-hidden group hover:border-primary/40 transition-all duration-500 cursor-pointer cursor-pointer cursor-pointer cursor-pointer" onclick="location.href='articles/speed-up-windows-boot-time.html'">
+<div class="h-48 overflow-hidden relative">
+<img alt="Top 5 Free PC Cleaners to Speed Up Your Windows Boot Time (2024)" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Top 5 Free PC Cleaners to Speed Up Your Windows Boot Time (2024)" src="images/pc_cleaner.png"/>
+<div class="absolute top-sm left-sm">
+<span class="bg-primary/90 text-on-primary font-label-md text-label-md px-xs py-1 rounded uppercase">Security Tips</span>
+</div>
+</div>
+<div class="p-sm flex flex-col gap-xs">
+<h4 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors"><a class="hover:underline hover:text-primary transition-colors text-white" href="articles/speed-up-windows-boot-time.html">Top 5 Free PC Cleaners to Speed Up Your Windows Boot Time (2024)</a></h4>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">Is your computer taking forever to start up? You press the power button, walk away to make a cup of coffee, and when you return, it is still loading. ...</p>
+<div class="mt-sm flex items-center justify-between">
+<span class="font-mono-sm text-mono-sm text-secondary">4.8/5 Rating</span>
+<button class="bg-primary text-on-primary p-xs rounded-lg active:scale-90 transition-transform" onclick="event.stopPropagation(); location.href='articles/speed-up-windows-boot-time.html';"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">download</span></button>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="glass-surface rounded-xl overflow-hidden group hover:border-primary/40 transition-all duration-500 cursor-pointer cursor-pointer cursor-pointer cursor-pointer" onclick="location.href='articles/harden-windows-safely.html'">
+<div class="h-48 overflow-hidden relative">
+<img alt="Is Your Antivirus Slowing Down Your Gaming? How to Harden Windows Safely" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Is Your Antivirus Slowing Down Your Gaming? How to Harden Windows Safely" src="images/harden_windows.png"/>
+<div class="absolute top-sm left-sm">
+<span class="bg-secondary/90 text-on-secondary font-label-md text-label-md px-xs py-1 rounded uppercase">Security Tips</span>
+</div>
+</div>
+<div class="p-sm flex flex-col gap-xs">
+<h4 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors"><a class="hover:underline hover:text-primary transition-colors text-white" href="articles/harden-windows-safely.html">Is Your Antivirus Slowing Down Your Gaming? How to Harden Windows Safely</a></h4>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">Every gamer knows the dread of sudden frame drops. You are in the middle of a high-stakes competitive match, and suddenly, your screen stutters. Often...</p>
+<div class="mt-sm flex items-center justify-between">
+<span class="font-mono-sm text-mono-sm text-secondary">5.0/5 Rating</span>
+<button class="bg-primary text-on-primary p-xs rounded-lg active:scale-90 transition-transform" onclick="event.stopPropagation(); location.href='articles/harden-windows-safely.html';"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">download</span></button>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="glass-surface rounded-xl overflow-hidden group hover:border-primary/40 transition-all duration-500 cursor-pointer cursor-pointer cursor-pointer cursor-pointer" onclick="location.href='articles/why-tech-pros-use-wireguard.html'">
+<div class="h-48 overflow-hidden relative">
+<img alt="Why Tech Pros Use WireGuard VPNs Over Traditional OpenVPN in 2024" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Why Tech Pros Use WireGuard VPNs Over Traditional OpenVPN in 2024" src="images/wireguard_vpn.png"/>
+<div class="absolute top-sm left-sm">
+<span class="bg-tertiary/90 text-on-tertiary font-label-md text-label-md px-xs py-1 rounded uppercase">VPN Speeds</span>
+</div>
+</div>
+<div class="p-sm flex flex-col gap-xs">
+<h4 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors"><a class="hover:underline hover:text-primary transition-colors text-white" href="articles/why-tech-pros-use-wireguard.html">Why Tech Pros Use WireGuard VPNs Over Traditional OpenVPN in 2024</a></h4>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">Virtual Private Networks have become essential tools for privacy, remote work, and bypassing geographical content restrictions. For over a decade, Ope...</p>
+<div class="mt-sm flex items-center justify-between">
+<span class="font-mono-sm text-mono-sm text-secondary">4.2/5 Rating</span>
+<button class="bg-primary text-on-primary p-xs rounded-lg active:scale-90 transition-transform" onclick="event.stopPropagation(); location.href='articles/why-tech-pros-use-wireguard.html';"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">download</span></button>
+</div>
+</div>
+</div>
+<!-- Card 4 -->
+<!-- Card 5 -->
+<!-- Card 6 -->
+</div>
+</div>
+<!-- Sidebar (3 Columns) -->
+<aside class="lg:col-span-3 flex flex-col gap-lg">
+<!-- Box Ad -->
+<div class="w-full bg-surface-container-high border border-outline-variant p-sm rounded-lg flex flex-col items-center justify-center min-h-[250px] sticky top-[160px]">
+<span class="text-on-surface-variant font-label-md text-label-md uppercase tracking-widest mb-sm">Partner Placement</span>
+<div class="w-[300px] h-[250px] bg-surface-dim border border-dashed border-outline-variant flex items-center justify-center text-outline text-xs text-center px-lg">
+                        300 x 250 Sidebar Banner Space Available
+                    </div>
+<button class="mt-md text-primary font-label-md text-label-md hover:underline">Inquire About Ads</button>
+</div>
+<!-- Trending Topics -->
+<div class="glass-surface p-md rounded-xl">
+<h5 class="font-headline-md text-headline-md text-on-surface mb-sm">Trending Tags</h5>
+<div class="flex flex-wrap gap-xs">
+<span class="bg-surface-container-highest px-xs py-1 rounded text-xs text-secondary hover:bg-secondary/20 cursor-pointer">#cybersec</span>
+<span class="bg-surface-container-highest px-xs py-1 rounded text-xs text-secondary hover:bg-secondary/20 cursor-pointer">#privacy</span>
+<span class="bg-surface-container-highest px-xs py-1 rounded text-xs text-secondary hover:bg-secondary/20 cursor-pointer">#optimization</span>
+<span class="bg-surface-container-highest px-xs py-1 rounded text-xs text-secondary hover:bg-secondary/20 cursor-pointer">#registry</span>
+<span class="bg-surface-container-highest px-xs py-1 rounded text-xs text-secondary hover:bg-secondary/20 cursor-pointer">#vpn2024</span>
+<span class="bg-surface-container-highest px-xs py-1 rounded text-xs text-secondary hover:bg-secondary/20 cursor-pointer">#malwarefix</span>
+</div>
+</div>
+</aside>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full mt-xl bg-surface-container-lowest/80 dark:bg-surface-container-lowest/80 backdrop-blur-2xl border-t border-secondary/20 shadow-2xl">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-lg px-gutter py-xl max-w-container-max mx-auto">
+<!-- Brand & Mission -->
+<div class="flex flex-col gap-sm">
+<h3 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary">UtilityHQ</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Precision reviews for the modern IT professional. Secure your stack with clinical accuracy.</p>
+<div class="flex gap-sm mt-sm">
+<span class="material-symbols-outlined text-secondary cursor-pointer hover:text-primary">terminal</span>
+<span class="material-symbols-outlined text-secondary cursor-pointer hover:text-primary">shield</span>
+<span class="material-symbols-outlined text-secondary cursor-pointer hover:text-primary">data_object</span>
+</div>
+</div>
+<!-- Site Links -->
+<div class="flex flex-col gap-sm">
+<h4 class="font-label-md text-label-md text-on-surface uppercase tracking-widest">Navigation</h4>
+<div class="flex flex-col gap-xs font-body-md text-body-md">
+<a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">Explore Reviews</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">About the Lab</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">Terms of Service</a>
+</div>
+</div>
+<!-- Categories -->
+<div class="flex flex-col gap-sm">
+<h4 class="font-label-md text-label-md text-on-surface uppercase tracking-widest">Focus Areas</h4>
+<div class="flex flex-col gap-xs font-body-md text-body-md">
+<a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">Antivirus Suites</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">VPN Services</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">System Cleaners</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">Browser Security</a>
+</div>
+</div>
+<!-- Newsletter -->
+<div class="flex flex-col gap-sm">
+<h4 class="font-label-md text-label-md text-on-surface uppercase tracking-widest">Intelligence Report</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Get weekly security patches and tool updates direct to your inbox.</p>
+<form class="flex flex-col gap-xs focus-within:ring-2 focus-within:ring-primary rounded p-base">
+<input class="bg-surface-dim border border-outline-variant rounded px-sm py-xs text-on-surface focus:border-secondary outline-none" placeholder="Email Address" type="email"/>
+<button class="bg-primary text-on-primary font-label-md text-label-md py-xs rounded hover:shadow-lg hover:shadow-primary/20 transition-all active:scale-95" type="submit">Subscribe Now</button>
+</form>
+</div>
+</div>
+<div class="max-w-container-max mx-auto px-gutter py-md border-t border-secondary/10 text-center">
+<p class="font-body-md text-body-md text-on-surface-variant opacity-60">© 2024 UtilityHQ. All rights reserved. Precision Software Reviews.</p>
+</div>
+</footer>
+<script>
+        // Micro-interactions for the Scan Mock-up
+        function animateScan() {
+            const progressBars = ['prog1', 'prog2', 'prog3'];
+            progressBars.forEach(id => {
+                const bar = document.getElementById(id);
+                const val = document.getElementById(id + '-val');
+                if (bar && val) {
+                    const newWidth = Math.floor(Math.random() * (98 - 40 + 1) + 40);
+                    bar.style.width = newWidth + '%';
+                    val.innerText = newWidth + '%';
+                    
+                    // Change color based on value
+                    if (newWidth < 60) {
+                        bar.classList.remove('bg-primary', 'bg-secondary');
+                        bar.classList.add('bg-error');
+                        val.classList.remove('text-primary', 'text-secondary');
+                        val.classList.add('text-error');
+                    } else if (newWidth < 85) {
+                        bar.classList.remove('bg-primary', 'bg-error');
+                        bar.classList.add('bg-secondary');
+                        val.classList.remove('text-primary', 'text-error');
+                        val.classList.add('text-secondary');
+                    } else {
+                        bar.classList.remove('bg-secondary', 'bg-error');
+                        bar.classList.add('bg-primary');
+                        val.classList.remove('text-secondary', 'text-error');
+                        val.classList.add('text-primary');
+                    }
+                }
+            });
+        }
+
+        // Run animation every 3 seconds
+        setInterval(animateScan, 3000);
+
+        // Simple scroll effect for Header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('shadow-2xl');
+            } else {
+                header.classList.remove('shadow-2xl');
+            }
+        });
+    </script>
+</body></html>

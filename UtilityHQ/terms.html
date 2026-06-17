@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>UtilityHQ | Professional Software Reviews &amp; Optimization</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Geist:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            background-color: #051424; /* surface-dim */
+            color: #d4e4fa; /* on-surface */
+            font-family: 'Inter', sans-serif;
+        }
+        .glass-surface {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(76, 215, 246, 0.1);
+        }
+        .neon-glow:hover {
+            box-shadow: 0 0 20px rgba(75, 226, 119, 0.4);
+        }
+        .cyan-glow:hover {
+            box-shadow: 0 0 15px rgba(76, 215, 246, 0.3);
+        }
+        .mono-font {
+            font-family: 'Geist', monospace;
+        }
+        @keyframes scan-line {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(400%); }
+        }
+        .scanner-line {
+            animation: scan-line 3s linear infinite;
+        }
+        .progress-fill {
+            transition: width 1s ease-in-out;
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed-variant": "#005321",
+                    "error-container": "#93000a",
+                    "tertiary-container": "#ff8b7c",
+                    "surface-variant": "#273647",
+                    "tertiary-fixed-dim": "#ffb4a9",
+                    "on-secondary": "#003640",
+                    "on-primary-fixed": "#002109",
+                    "inverse-primary": "#006e2f",
+                    "tertiary-fixed": "#ffdad5",
+                    "on-secondary-fixed": "#001f26",
+                    "surface-dim": "#051424",
+                    "on-error": "#690005",
+                    "on-tertiary-container": "#76231b",
+                    "on-primary": "#003915",
+                    "on-tertiary-fixed": "#410001",
+                    "secondary-fixed-dim": "#4cd7f6",
+                    "surface-container-highest": "#273647",
+                    "surface-container-high": "#1c2b3c",
+                    "on-background": "#d4e4fa",
+                    "secondary-container": "#03b5d3",
+                    "error": "#ffb4ab",
+                    "on-primary-container": "#004b1e",
+                    "secondary-fixed": "#acedff",
+                    "outline-variant": "#3d4a3d",
+                    "outline": "#869585",
+                    "surface-container": "#122131",
+                    "inverse-surface": "#d4e4fa",
+                    "primary-fixed": "#6bff8f",
+                    "on-secondary-fixed-variant": "#004e5c",
+                    "background": "#051424",
+                    "secondary": "#4cd7f6",
+                    "on-secondary-container": "#00424e",
+                    "surface-container-lowest": "#010f1f",
+                    "primary": "#4be277",
+                    "surface": "#051424",
+                    "on-surface": "#d4e4fa",
+                    "primary-container": "#22c55e",
+                    "on-surface-variant": "#bccbb9",
+                    "on-tertiary": "#60130d",
+                    "surface-container-low": "#0d1c2d",
+                    "tertiary": "#ffb5ab",
+                    "on-error-container": "#ffdad6",
+                    "on-tertiary-fixed-variant": "#7f2a21",
+                    "primary-fixed-dim": "#4ae176",
+                    "surface-tint": "#4ae176",
+                    "inverse-on-surface": "#233143",
+                    "surface-bright": "#2c3a4c"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "container-max": "1280px",
+                    "xs": "8px",
+                    "xl": "80px",
+                    "sm": "16px",
+                    "base": "4px",
+                    "lg": "48px",
+                    "gutter": "24px",
+                    "md": "24px"
+            },
+            "fontFamily": {
+                    "headline-lg-mobile": ["Geist"],
+                    "body-lg": ["Inter"],
+                    "label-md": ["Geist"],
+                    "body-md": ["Inter"],
+                    "mono-sm": ["Geist"],
+                    "headline-xl": ["Geist"],
+                    "headline-lg": ["Geist"],
+                    "headline-md": ["Geist"]
+            },
+            "fontSize": {
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "mono-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                    "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="overflow-x-hidden">
+<!-- Top Ad Banner -->
+<div class="w-full bg-surface-container-lowest py-base flex justify-center items-center border-b border-secondary/10 h-[90px]">
+<div class="w-[728px] h-[90px] bg-surface-container-high flex flex-col items-center justify-center border border-dashed border-outline-variant rounded-lg group cursor-pointer transition-colors hover:bg-surface-container-highest">
+<span class="text-on-surface-variant font-label-md text-label-md uppercase tracking-widest">Advertisement</span>
+<span class="text-outline text-xs mt-1">728 x 90 Sponsor Placement</span>
+</div>
+</div>
+<!-- Header / TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/60 dark:bg-surface/60 backdrop-blur-xl border-b border-secondary/30 shadow-xl shadow-surface-dim/40 mt-[90px]">
+<div class="flex justify-between items-center px-gutter py-sm max-w-container-max mx-auto">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary cursor-pointer active:scale-95">menu</span>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary tracking-tighter cursor-pointer">UtilityHQ</h1>
+</div>
+<nav class="hidden md:flex items-center gap-md">
+<a class="font-body-md text-body-md text-primary dark:text-primary font-bold cursor-pointer active:scale-95 transition-all duration-300" href="index.html">Home</a>
+<a class="font-body-md text-body-md text-on-surface dark:text-on-surface hover:text-primary transition-all duration-300 cursor-pointer active:scale-95" href="#">Security Tips</a>
+<a class="font-body-md text-body-md text-on-surface dark:text-on-surface hover:text-primary transition-all duration-300 cursor-pointer active:scale-95" href="#">VPN Speeds</a>
+<a class="font-body-md text-body-md text-on-surface dark:text-on-surface hover:text-primary transition-all duration-300 cursor-pointer active:scale-95" href="#">Tools</a>
+</nav>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-on-surface cursor-pointer active:scale-95">search</span>
+<button class="hidden sm:block bg-primary text-on-primary font-label-md text-label-md px-sm py-base rounded-full hover:backdrop-blur-2xl transition-all duration-300 active:scale-95">Sign In</button>
+</div>
+</div>
+</header>
+<main class="pt-[160px]">
+
+<div class="max-w-4xl mx-auto px-4 py-12 md:py-20">
+    <div class="glass-panel p-8 md:p-12 rounded-2xl border border-outline-variant/20 shadow-xl space-y-8">
+        <div class="space-y-4 border-b border-outline-variant/20 pb-6">
+            <span class="text-xs font-bold uppercase tracking-wider text-secondary">Legal Terms</span>
+            <h2 class="text-3xl md:text-5xl font-extrabold text-on-surface tracking-tight">Terms of Service</h2>
+            <p class="text-sm text-on-surface-variant opacity-80">Last Updated: June 17, 2026</p>
+        </div>
+        
+        <div class="space-y-6 text-on-surface-variant leading-relaxed">
+            <p>Welcome to <strong>UtilityHQ</strong>!</p>
+            <p>These terms and conditions outline the rules and regulations for the use of UtilityHQ's Website, located at <a href="index.html" class="text-primary hover:underline">utilityhq.com</a>.</p>
+            <p>By accessing this website we assume you accept these terms and conditions. Do not continue to use UtilityHQ if you do not agree to take all of the terms and conditions stated on this page.</p>
+            
+            <h3 class="text-xl font-bold text-on-surface pt-4">1. License and IP</h3>
+            <p>Unless otherwise stated, UtilityHQ and/or its licensors own the intellectual property rights for all material on UtilityHQ. All intellectual property rights are reserved. You may access this from UtilityHQ for your own personal use subjected to restrictions set in these terms and conditions.</p>
+            <p>You must not:</p>
+            <ul class="list-disc pl-6 space-y-2">
+                <li>Republish material from UtilityHQ</li>
+                <li>Sell, rent or sub-license material from UtilityHQ</li>
+                <li>Reproduce, duplicate or copy material from UtilityHQ</li>
+                <li>Redistribute content from UtilityHQ</li>
+            </ul>
+            
+            <h3 class="text-xl font-bold text-on-surface pt-4">2. Third-Party Links & Ads</h3>
+            <p>Our website contains links to external websites and advertising placements (such as affiliate links, sweepstakes entry forms, software clean-install downloads, and native ads grids). UtilityHQ has no control over, and assumes no responsibility for, the content, privacy policies, or practices of any third-party websites or services. You acknowledge and agree that UtilityHQ shall not be responsible or liable, directly or indirectly, for any damage or loss caused or alleged to be caused by or in connection with the use of or reliance on any such content, goods, or services available on or through any such web sites or services.</p>
+            
+            <h3 class="text-xl font-bold text-on-surface pt-4">3. Content Liability</h3>
+            <p>We shall not be hold responsible for any content that appears on your Website. You agree to protect and defend us against all claims that is rising on your Website. No link(s) should appear on any Website that may be interpreted as libeous, obscene or criminal, or which infringes, otherwise violates, or advocates the infringement or other violation of, any third party rights.</p>
+            
+            <h3 class="text-xl font-bold text-on-surface pt-4">4. Disclaimer of Warranties</h3>
+            <p>This website is provided "as is," with all faults, and UtilityHQ expresses no representations or warranties, of any kind related to this website or the materials contained on this website. Also, nothing contained on this website shall be interpreted as advising you. The review logs, tutorial guides, and software specifications are for informational purposes only.</p>
+            
+            <h3 class="text-xl font-bold text-on-surface pt-4">5. Governing Law & Jurisdiction</h3>
+            <p>These Terms will be governed by and interpreted in accordance with the laws of the jurisdiction in which the website operator resides, and you submit to the non-exclusive jurisdiction of the state and federal courts located in that country for the resolution of any disputes.</p>
+        </div>
+    </div>
+</div>
+
+</main>
+<!-- Footer -->
+<footer class="w-full mt-xl bg-surface-container-lowest/80 dark:bg-surface-container-lowest/80 backdrop-blur-2xl border-t border-secondary/20 shadow-2xl">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-lg px-gutter py-xl max-w-container-max mx-auto">
+<!-- Brand & Mission -->
+<div class="flex flex-col gap-sm">
+<h3 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary">UtilityHQ</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Precision reviews for the modern IT professional. Secure your stack with clinical accuracy.</p>
+<div class="flex gap-sm mt-sm">
+<span class="material-symbols-outlined text-secondary cursor-pointer hover:text-primary">terminal</span>
+<span class="material-symbols-outlined text-secondary cursor-pointer hover:text-primary">shield</span>
+<span class="material-symbols-outlined text-secondary cursor-pointer hover:text-primary">data_object</span>
+</div>
+</div>
+<!-- Site Links -->
+<div class="flex flex-col gap-sm">
+<h4 class="font-label-md text-label-md text-on-surface uppercase tracking-widest">Navigation</h4>
+<div class="flex flex-col gap-xs font-body-md text-body-md">
+<a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">Explore Reviews</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">About the Lab</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">Terms of Service</a>
+</div>
+</div>
+<!-- Categories -->
+<div class="flex flex-col gap-sm">
+<h4 class="font-label-md text-label-md text-on-surface uppercase tracking-widest">Focus Areas</h4>
+<div class="flex flex-col gap-xs font-body-md text-body-md">
+<a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">Antivirus Suites</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">VPN Services</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">System Cleaners</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">Browser Security</a>
+</div>
+</div>
+<!-- Newsletter -->
+<div class="flex flex-col gap-sm">
+<h4 class="font-label-md text-label-md text-on-surface uppercase tracking-widest">Intelligence Report</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Get weekly security patches and tool updates direct to your inbox.</p>
+<form class="flex flex-col gap-xs focus-within:ring-2 focus-within:ring-primary rounded p-base">
+<input class="bg-surface-dim border border-outline-variant rounded px-sm py-xs text-on-surface focus:border-secondary outline-none" placeholder="Email Address" type="email"/>
+<button class="bg-primary text-on-primary font-label-md text-label-md py-xs rounded hover:shadow-lg hover:shadow-primary/20 transition-all active:scale-95" type="submit">Subscribe Now</button>
+</form>
+</div>
+</div>
+<div class="max-w-container-max mx-auto px-gutter py-md border-t border-secondary/10 text-center">
+<p class="font-body-md text-body-md text-on-surface-variant opacity-60">© 2024 UtilityHQ. All rights reserved. Precision Software Reviews.</p>
+</div>
+</footer>
+<script>
+        // Micro-interactions for the Scan Mock-up
+        function animateScan() {
+            const progressBars = ['prog1', 'prog2', 'prog3'];
+            progressBars.forEach(id => {
+                const bar = document.getElementById(id);
+                const val = document.getElementById(id + '-val');
+                if (bar && val) {
+                    const newWidth = Math.floor(Math.random() * (98 - 40 + 1) + 40);
+                    bar.style.width = newWidth + '%';
+                    val.innerText = newWidth + '%';
+                    
+                    // Change color based on value
+                    if (newWidth < 60) {
+                        bar.classList.remove('bg-primary', 'bg-secondary');
+                        bar.classList.add('bg-error');
+                        val.classList.remove('text-primary', 'text-secondary');
+                        val.classList.add('text-error');
+                    } else if (newWidth < 85) {
+                        bar.classList.remove('bg-primary', 'bg-error');
+                        bar.classList.add('bg-secondary');
+                        val.classList.remove('text-primary', 'text-error');
+                        val.classList.add('text-secondary');
+                    } else {
+                        bar.classList.remove('bg-secondary', 'bg-error');
+                        bar.classList.add('bg-primary');
+                        val.classList.remove('text-secondary', 'text-error');
+                        val.classList.add('text-primary');
+                    }
+                }
+            });
+        }
+
+        // Run animation every 3 seconds
+        setInterval(animateScan, 3000);
+
+        // Simple scroll effect for Header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('shadow-2xl');
+            } else {
+                header.classList.remove('shadow-2xl');
+            }
+        });
+    </script>
+</body></html>

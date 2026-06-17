@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Lumina Journal - Creator Studio Customizer</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&amp;family=Inter:wght@400;500;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#744800",
+                        "surface-container": "#f0ecf8",
+                        "surface-bright": "#fcf8ff",
+                        "on-error": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-background": "#1b1b23",
+                        "surface-tint": "#5148d7",
+                        "surface-container-low": "#f6f2fe",
+                        "secondary-fixed-dim": "#c0c1ff",
+                        "on-primary-fixed-variant": "#372abf",
+                        "primary-container": "#4338ca",
+                        "inverse-surface": "#302f39",
+                        "secondary-container": "#6063ee",
+                        "on-surface": "#1b1b23",
+                        "surface-variant": "#e4e1ed",
+                        "primary": "#2a14b4",
+                        "on-tertiary-container": "#ffb759",
+                        "secondary": "#4648d4",
+                        "on-secondary-container": "#fffbff",
+                        "on-surface": "#1b1b23",
+                        "surface-variant": "#e4e1ed",
+                        "surface": "#fcf8ff",
+                        "outline": "#777586",
+                        "on-surface-variant": "#464554",
+                        "on-primary-fixed": "#100069",
+                        "tertiary-fixed-dim": "#ffb95f",
+                        "secondary-fixed": "#e1e0ff",
+                        "error-container": "#ffdad6",
+                        "on-secondary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed": "#ffddb8",
+                        "on-primary": "#ffffff",
+                        "primary-fixed-dim": "#c3c0ff",
+                        "on-secondary-fixed-variant": "#2f2ebe",
+                        "on-tertiary-fixed": "#2a1700",
+                        "tertiary": "#553300",
+                        "surface-container-highest": "#e4e1ed",
+                        "inverse-on-surface": "#f3effb",
+                        "primary-fixed": "#e3dfff",
+                        "surface-container-high": "#eae6f3",
+                        "outline-variant": "#c7c4d7",
+                        "surface-dim": "#dcd8e4",
+                        "on-tertiary-fixed-variant": "#653e00",
+                        "on-secondary-fixed": "#07006c",
+                        "error": "#ba1a1a",
+                        "inverse-primary": "#c3c0ff",
+                        "on-tertiary": "#ffffff",
+                        "background": "#fcf8ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "3xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "8px",
+                        "margin-mobile": "16px",
+                        "container-max": "1280px",
+                        "content-reading-width": "720px",
+                        "gutter": "24px",
+                        "margin-desktop": "48px",
+                        "reading-width": "720px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Newsreader"],
+                        "display-lg": ["Newsreader"],
+                        "display-lg-mobile": ["Newsreader"],
+                        "label-md": ["Inter"],
+                        "headline-sm": ["Newsreader"],
+                        "caption": ["Inter"],
+                        "display": ["Newsreader"],
+                        "body": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 20;
+        }
+        .paper-texture {
+            background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #dbdad6;
+            border-radius: 10px;
+        }
+        .article-dropcap::first-letter {
+            float: left;
+            font-family: 'Newsreader';
+            font-size: 4.5rem;
+            line-height: 0.8;
+            padding-right: 16px;
+            color: #2a14b4;
+            font-weight: 700;
+        }
+        .drag-handle {
+            cursor: grab;
+        }
+        .drag-handle:active {
+            cursor: grabbing;
+        }
+    </style>
+</head>
+<body class="font-body text-on-surface bg-background flex h-screen overflow-hidden">
+<!-- Left App Sidebar (Navigation) -->
+<nav class="w-20 lg:w-64 bg-surface-container-low border-r border-outline-variant/30 flex flex-col items-center lg:items-stretch p-4 lg:p-6 shrink-0 z-50">
+<div class="mb-10 flex items-center gap-3">
+<div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-primary text-2xl" style="font-variation-settings: 'FILL' 1;">auto_stories</span>
+</div>
+<h1 class="font-display text-xl font-bold text-primary hidden lg:block tracking-tight">Lumina</h1>
+</div>
+<ul class="space-y-2 flex-grow">
+<li>
+<a class="flex items-center gap-4 p-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high transition-all group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary">dashboard</span>
+<span class="font-medium text-sm hidden lg:block">Dashboard</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-4 p-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high transition-all group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary">analytics</span>
+<span class="font-medium text-sm hidden lg:block">Analytics</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-4 p-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high transition-all group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary">article</span>
+<span class="font-medium text-sm hidden lg:block">My Posts</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-4 p-3 rounded-xl bg-primary text-on-primary shadow-lg shadow-primary/20" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">auto_fix_high</span>
+<span class="font-medium text-sm hidden lg:block">Customizer</span>
+</a>
+</li>
+</ul>
+<div class="mt-auto lg:pt-6 lg:border-t lg:border-outline-variant/30">
+<button class="w-full h-12 lg:h-auto bg-primary-container text-on-primary-container rounded-xl lg:py-3 font-semibold text-sm flex justify-center items-center gap-2 hover:bg-primary hover:text-on-primary transition-all">
+<span class="material-symbols-outlined">add</span>
+<span class="hidden lg:block">Write New Post</span>
+</button>
+</div>
+</nav>
+<!-- Customizer Controls Panel -->
+<aside class="w-80 bg-surface border-r border-outline-variant/20 flex flex-col shrink-0 z-40">
+<!-- Tab Navigation for Customizer -->
+<div class="flex border-b border-outline-variant/20">
+<button class="flex-1 py-4 text-xs font-bold uppercase tracking-widest text-primary border-b-2 border-primary">Blocks</button>
+<button class="flex-1 py-4 text-xs font-bold uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors">Styles</button>
+</div>
+<div class="flex-1 overflow-y-auto p-6 custom-scrollbar space-y-8">
+<!-- Layout Blocks Section -->
+<div>
+<div class="flex items-center justify-between mb-4">
+<h2 class="font-display text-xl font-semibold text-primary">Layout Blocks</h2>
+</div>
+<div class="space-y-3">
+<div class="group cursor-grab active:cursor-grabbing bg-surface-container-low border border-outline-variant/20 rounded-2xl p-4 flex items-center gap-4 hover:bg-surface-container-high transition-all">
+<div class="w-10 h-10 bg-surface-container-lowest rounded-xl flex items-center justify-center text-primary border border-outline-variant/10">
+<span class="material-symbols-outlined">title</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-semibold">Heading</p>
+<p class="text-[11px] text-on-surface-variant">Editorial style headers</p>
+</div>
+<span class="material-symbols-outlined text-outline/40">drag_indicator</span>
+</div>
+<div class="group cursor-grab active:cursor-grabbing bg-surface-container-low border border-outline-variant/20 rounded-2xl p-4 flex items-center gap-4 hover:bg-surface-container-high transition-all">
+<div class="w-10 h-10 bg-surface-container-lowest rounded-xl flex items-center justify-center text-primary border border-outline-variant/10">
+<span class="material-symbols-outlined">notes</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-semibold">Text Block</p>
+<p class="text-[11px] text-on-surface-variant">Body text &amp; paragraphs</p>
+</div>
+<span class="material-symbols-outlined text-outline/40">drag_indicator</span>
+</div>
+<div class="group cursor-grab active:cursor-grabbing bg-surface-container-low border border-outline-variant/20 rounded-2xl p-4 flex items-center gap-4 hover:bg-surface-container-high transition-all">
+<div class="w-10 h-10 bg-surface-container-lowest rounded-xl flex items-center justify-center text-primary border border-outline-variant/10">
+<span class="material-symbols-outlined">image</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-semibold">Gallery</p>
+<p class="text-[11px] text-on-surface-variant">High-fidelity imagery</p>
+</div>
+<span class="material-symbols-outlined text-outline/40">drag_indicator</span>
+</div>
+</div>
+</div>
+<!-- Typography Theme Selector -->
+<div>
+<h3 class="text-[11px] font-bold uppercase tracking-widest text-outline mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-[14px]">text_fields</span>
+                Typography Theme
+            </h3>
+<div class="grid grid-cols-1 gap-2">
+<button class="w-full flex items-center justify-between p-3 rounded-xl border-2 border-primary bg-primary-container/10">
+<div class="text-left">
+<span class="block text-sm font-bold font-display">Editorial Serif</span>
+<span class="block text-[10px] text-on-surface-variant">Classic newsreader style</span>
+</div>
+<span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+</button>
+<button class="w-full flex items-center justify-between p-3 rounded-xl border border-outline-variant/30 hover:border-primary/50 transition-all">
+<div class="text-left">
+<span class="block text-sm font-bold font-body">Modern Sans</span>
+<span class="block text-[10px] text-on-surface-variant">Clean, minimal, Swiss</span>
+</div>
+</button>
+<button class="w-full flex items-center justify-between p-3 rounded-xl border border-outline-variant/30 hover:border-primary/50 transition-all">
+<div class="text-left">
+<span class="block text-sm font-bold italic font-display">Classical</span>
+<span class="block text-[10px] text-on-surface-variant">Sophisticated historical</span>
+</div>
+</button>
+</div>
+</div>
+<!-- Color Palette Selector -->
+<div>
+<h3 class="text-[11px] font-bold uppercase tracking-widest text-outline mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-[14px]">palette</span>
+                Color Palette
+            </h3>
+<div class="grid grid-cols-2 gap-3">
+<button class="p-3 rounded-xl border-2 border-primary bg-surface-container text-left group">
+<div class="flex gap-1 mb-2">
+<div class="w-3 h-3 rounded-full bg-primary"></div>
+<div class="w-3 h-3 rounded-full bg-secondary"></div>
+<div class="w-3 h-3 rounded-full bg-surface-container-highest"></div>
+</div>
+<span class="text-[10px] font-bold text-primary">Creative Sanctuary</span>
+</button>
+<button class="p-3 rounded-xl border border-outline-variant/30 hover:border-primary/50 transition-all text-left">
+<div class="flex gap-1 mb-2">
+<div class="w-3 h-3 rounded-full bg-[#1b1b23]"></div>
+<div class="w-3 h-3 rounded-full bg-[#372abf]"></div>
+<div class="w-3 h-3 rounded-full bg-[#c0c1ff]"></div>
+</div>
+<span class="text-[10px] font-bold text-on-surface-variant">Midnight Oasis</span>
+</button>
+<button class="p-3 rounded-xl border border-outline-variant/30 hover:border-primary/50 transition-all text-left">
+<div class="flex gap-1 mb-2">
+<div class="w-3 h-3 rounded-full bg-[#005221]"></div>
+<div class="w-3 h-3 rounded-full bg-[#ffddb8]"></div>
+<div class="w-3 h-3 rounded-full bg-[#f6f2fe]"></div>
+</div>
+<span class="text-[10px] font-bold text-on-surface-variant">Forest Library</span>
+</button>
+<button class="p-3 rounded-xl border border-outline-variant/30 hover:border-primary/50 transition-all text-left">
+<div class="flex gap-1 mb-2">
+<div class="w-3 h-3 rounded-full bg-[#9c4146]"></div>
+<div class="w-3 h-3 rounded-full bg-[#fcf8ff]"></div>
+<div class="w-3 h-3 rounded-full bg-[#744800]"></div>
+</div>
+<span class="text-[10px] font-bold text-on-surface-variant">Desert Rose</span>
+</button>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Workspace Area -->
+<main class="flex-1 flex flex-col h-screen overflow-hidden">
+<!-- Top Toolbar -->
+<header class="h-16 px-6 border-b border-outline-variant/20 flex items-center justify-between bg-surface-container-lowest/90 backdrop-blur-md z-30 shrink-0">
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-3">
+<span class="w-2 h-2 bg-secondary rounded-full animate-pulse"></span>
+<span class="text-xs font-medium text-on-surface-variant">Drafting: <span class="text-on-surface font-semibold">The Geometry of Silence</span></span>
+</div>
+<div class="h-4 w-px bg-outline-variant/50"></div>
+<div class="flex items-center gap-4 text-outline">
+<span class="material-symbols-outlined text-[18px] hover:text-primary cursor-pointer">devices</span>
+<span class="material-symbols-outlined text-[18px] hover:text-primary cursor-pointer">undo</span>
+<span class="material-symbols-outlined text-[18px] hover:text-primary cursor-pointer">redo</span>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<p class="text-[11px] text-outline italic mr-2 hidden sm:block">All changes saved</p>
+<button class="px-5 py-2 text-xs font-semibold text-primary border border-outline-variant rounded-full hover:bg-surface-container transition-all">Preview</button>
+<button class="px-6 py-2 text-xs font-bold text-on-primary bg-primary rounded-full hover:shadow-lg hover:shadow-primary/20 active:scale-95 transition-all">Publish</button>
+</div>
+</header>
+<!-- Live Preview Canvas -->
+<div class="flex-1 overflow-y-auto bg-surface-container-low p-8 md:p-12 lg:p-16 flex justify-center custom-scrollbar">
+<!-- Digital Canvas Wrapper -->
+<div class="w-full max-w-container-max bg-surface shadow-2xl border border-outline-variant/10 rounded-3xl overflow-hidden min-h-screen paper-texture flex flex-col relative group/canvas">
+<!-- Blog Header Preview -->
+<header class="pt-24 pb-16 px-margin-desktop text-center">
+<div class="max-w-reading-width mx-auto">
+<div class="mb-8 flex justify-center">
+<span class="bg-primary-container text-primary px-4 py-1 rounded-full text-[10px] font-bold tracking-[0.2em] uppercase">Architecture</span>
+</div>
+<h1 class="font-display text-[48px] lg:text-[72px] leading-[1.05] text-primary mb-10 tracking-tight font-extrabold focus:outline-none" contenteditable="true">The Geometry of Silence</h1>
+<!-- Featured Image Area -->
+<div class="relative w-full aspect-[21/9] bg-surface-container-highest rounded-2xl mb-12 flex flex-col items-center justify-center border-2 border-dashed border-outline-variant/50 hover:border-primary/50 transition-all cursor-pointer overflow-hidden group/featured">
+<div class="flex flex-col items-center gap-2 group-hover/featured:scale-105 transition-transform duration-300">
+<span class="material-symbols-outlined text-4xl text-outline-variant">add_photo_alternate</span>
+<span class="text-xs font-bold text-outline-variant uppercase tracking-widest">Set Featured Image</span>
+</div>
+<div class="absolute inset-0 bg-primary/5 opacity-0 group-hover/featured:opacity-100 transition-opacity"></div>
+</div>
+<p class="font-body text-xl text-on-surface-variant leading-relaxed mb-12 italic opacity-80" contenteditable="true">
+                        Exploring how empty space and deliberate lack of ornamentation creates profound emotional resonance in densely populated concrete jungles.
+                    </p>
+<div class="flex items-center justify-center gap-4 pt-4 border-t border-outline-variant/10 w-fit mx-auto">
+<img alt="Elena Rostova" class="w-10 h-10 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAayKAmVHdDvUSA3hy3LQCWn4HI1OdqcKMGBriEsldi40aeFOHy0zRT8oJKIFjlrgFr4BSpQ3GZe_EJ_3t8lQ6DiPWQT0R3tSYEs3XKCQG75JTInsZ5guvFh7hUTusSgcDocjnZHm7DoO7BGbQ5jpQmtjdX4vuPS0WE-WaTC6WZvKebvHWu7NcIGsUda9sZiiWFJq8iinqBmsisMzuOdoavpxz9t37iPucv1f6KOLw7RhV9EhKEcpuVnCIiA_-XRZbIa0zZ-akYKJHl"/>
+<div class="text-left">
+<p class="text-xs font-bold text-primary">Elena Rostova</p>
+<p class="text-[10px] text-outline uppercase tracking-wider">Oct 12, 2024 • 12 min read</p>
+</div>
+</div>
+</div>
+</header>
+<!-- Blog Body Preview -->
+<div class="flex-1 px-margin-desktop py-16">
+<div class="max-w-reading-width mx-auto space-y-12">
+<!-- Text Block with Formatting Toolbar -->
+<div class="relative group/block p-4 -m-4 rounded-2xl transition-all hover:bg-primary/[0.02]">
+<!-- Block Handle (Improve visual cues) -->
+<div class="absolute -left-10 top-1/2 -translate-y-1/2 opacity-0 group-hover/block:opacity-100 transition-opacity flex flex-col items-center gap-1">
+<span class="material-symbols-outlined text-outline-variant drag-handle">drag_indicator</span>
+<span class="material-symbols-outlined text-outline-variant text-[16px] cursor-pointer hover:text-primary">add_circle</span>
+</div>
+<!-- Floating Rich-Text Toolbar -->
+<div class="absolute -top-12 left-0 bg-surface-container-lowest shadow-xl border border-outline-variant/30 rounded-full px-4 py-1.5 flex items-center gap-4 opacity-0 group-hover/block:opacity-100 transition-all translate-y-2 group-hover/block:translate-y-0 z-40">
+<div class="flex items-center gap-3 pr-4 border-r border-outline-variant/30">
+<button class="material-symbols-outlined text-[18px] hover:text-primary transition-colors font-bold">format_bold</button>
+<button class="material-symbols-outlined text-[18px] hover:text-primary transition-colors italic">format_italic</button>
+<button class="material-symbols-outlined text-[18px] hover:text-primary transition-colors">link</button>
+</div>
+<div class="flex items-center gap-3 pr-4 border-r border-outline-variant/30">
+<button class="material-symbols-outlined text-[18px] hover:text-primary transition-colors">format_align_left</button>
+<button class="material-symbols-outlined text-[18px] hover:text-primary transition-colors">format_align_center</button>
+</div>
+<div class="flex items-center gap-3">
+<button class="material-symbols-outlined text-[18px] hover:text-primary transition-colors">format_list_bulleted</button>
+<button class="material-symbols-outlined text-[18px] hover:text-primary transition-colors">format_list_numbered</button>
+</div>
+</div>
+<div class="space-y-8 focus:outline-none" contenteditable="true">
+<p class="font-display text-2xl text-on-surface leading-loose article-dropcap">
+                                In the heart of the metropolis, where visual noise constantly assaults the senses, a new movement of architectural design is taking root. It doesn't scream for attention with sweeping curves or reflective glass; instead, it whispers through absence.
+                            </p>
+<p class="font-body text-lg text-on-surface-variant leading-loose">
+                                The concept of 'Ma' in Japanese aesthetics refers to the negative space—the gap, the pause, the distance between things. When applied to modern urban design, this translates to generous plazas devoid of statues, blank concrete walls that serve only to catch the changing shadows of the day.
+                            </p>
+</div>
+</div>
+<!-- Image Block -->
+<div class="relative group/block py-4">
+<div class="absolute -left-10 top-1/2 -translate-y-1/2 opacity-0 group-hover/block:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-outline-variant drag-handle">drag_indicator</span>
+</div>
+<figure class="relative cursor-pointer overflow-hidden rounded-3xl">
+<img alt="Minimalist Architecture" class="w-full h-auto shadow-lg object-cover hover:scale-[1.02] transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvh6V2l6N8rD2UMb2_z2GzTTqN0o3yqVStiKgrtFEJGJwrGSuSgbJRYbYJHtRSmqYfZf97BTJTW41h9NNgRlOpZxXWTINXdWGQcZY_6qYkkQBXyg8aDR8pvznjqhPNJakIj-ddHkeujkl8_hrfN0ER_13tuXH5Ywo0WXF61GJkUrEIHogKUf6cCxJrdUAjqLEKwChxd5Br_Dmjf1o3Cvtdxaun1peoE-q_eRY008f6a-cYJepSzS4SqMsOUQLAONhOYRFnug_1n6yn"/>
+<figcaption class="text-xs text-outline text-center mt-6 italic" contenteditable="true">The Ando Gallery in Tokyo perfectly encapsulates the 'silent' approach.</figcaption>
+</figure>
+</div>
+<!-- Quote Block -->
+<div class="relative group/block py-4">
+<div class="absolute -left-10 top-1/2 -translate-y-1/2 opacity-0 group-hover/block:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-outline-variant drag-handle">drag_indicator</span>
+</div>
+<blockquote class="px-12 py-6 border-l-4 border-primary/30 bg-primary/5 rounded-r-3xl">
+<p class="font-display text-4xl italic text-primary leading-snug focus:outline-none" contenteditable="true">"Architecture is the learned game, correct and magnificent, of forms assembled in the light."</p>
+<footer class="mt-6 text-[10px] font-bold text-outline uppercase tracking-[0.2em]" contenteditable="true">— Le Corbusier</footer>
+</blockquote>
+</div>
+</div>
+</div>
+<!-- Canvas Footer -->
+<footer class="mt-auto py-16 px-margin-desktop border-t border-outline-variant/10 bg-surface-container-low/20">
+<div class="flex flex-col md:flex-row justify-between items-center gap-8 max-w-reading-width mx-auto">
+<span class="font-display text-2xl text-primary font-bold">Lumina Journal</span>
+<div class="flex gap-10">
+<a class="text-[10px] font-bold text-outline uppercase tracking-widest hover:text-primary transition-colors" href="#">Privacy</a>
+<a class="text-[10px] font-bold text-outline uppercase tracking-widest hover:text-primary transition-colors" href="#">Terms</a>
+<a class="text-[10px] font-bold text-outline uppercase tracking-widest hover:text-primary transition-colors" href="#">Contact</a>
+</div>
+</div>
+</footer>
+<!-- Floating Global Add Block -->
+<div class="absolute bottom-12 left-1/2 -translate-x-1/2 bg-primary text-on-primary rounded-full px-8 py-3.5 flex items-center gap-3 shadow-2xl shadow-primary/40 cursor-pointer hover:scale-105 active:scale-95 transition-all z-50">
+<span class="material-symbols-outlined">add</span>
+<span class="text-sm font-bold uppercase tracking-widest">Insert Block</span>
+</div>
+</div>
+</div>
+</main>
+</body></html>

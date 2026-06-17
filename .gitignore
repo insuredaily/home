@@ -1,0 +1,4 @@
+*.pyc
+__pycache__/
+pad_articles.py
+patch_sites.py
