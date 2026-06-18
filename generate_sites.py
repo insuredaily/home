@@ -688,7 +688,99 @@ def get_article_detail_body(art, site_name, trending_list):
     
     video_html = ""
     if art.get('video_url'):
-        video_html = f"""
+        if site_name == "UtilityHQ":
+            video_html = f"""
+        <!-- Fluid Player Dependencies -->
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <script src="https://cdn.fluidplayer.com/v3/current/fluidplayer.min.js"></script>
+        
+        <!-- Fluid Player Video Player -->
+        <div class="my-6 rounded-2xl overflow-hidden shadow-2xl border border-outline-variant/30 bg-black">
+            <video autoplay muted playsinline controls id="article-video" class="w-full aspect-[16/9]">
+                <source type="video/mp4" src="{art['video_url']}">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        
+        <script>
+        $(function() {{
+            var fp = fluidPlayer("article-video", {{
+                layoutControls: {{
+                    autoPlay: true,
+                    mute: true,
+                    fillToContainer: true,
+                    primaryColor: "#4be277"
+                }},
+                vastOptions: {{
+                    adList: [
+                        {{
+                            roll: "preRoll",
+                            vastTag: "https://smooth-survey.com/damUFpz.dOGDNdvXZ/G/US/renma9eugZzU/l-kmPLT/cFxtN/Ducs5nNwjBEgt-NNzGEG0/N/z/kg2tNzQV"
+                        }}
+                    ]
+                }}
+            }});
+
+            var video = $("#article-video")[0];
+            if (video) {{
+                // When video starts playing, show the now playing banner
+                video.addEventListener("play", function() {{
+                    showNowPlaying();
+                }});
+                
+                // When metadata is loaded, update duration
+                video.addEventListener("loadedmetadata", function() {{
+                    updateDuration();
+                }});
+                
+                // Fallback in case metadata was already loaded
+                if (video.readyState >= 1) {{
+                    updateDuration();
+                }}
+            }}
+            
+            function showNowPlaying() {{
+                var title = {json.dumps(art['title'])};
+                var durationText = "Loading...";
+                if (video && video.duration && !isNaN(video.duration)) {{
+                    var mins = Math.floor(video.duration / 60);
+                    var secs = Math.floor(video.duration % 60);
+                    durationText = mins + ":" + (secs < 10 ? "0" : "") + secs;
+                }}
+                
+                var banner = $("#now-playing-banner");
+                if (banner.length === 0) {{
+                    banner = $("<div id='now-playing-banner' class='fixed top-0 left-0 w-full z-[9999] bg-gradient-to-r from-[#0f172a] via-[#1e293b] to-[#0f172a] text-white py-4 px-6 shadow-2xl border-b border-primary/50 flex justify-between items-center transition-all duration-500 transform -translate-y-full'></div>");
+                    $("body").append(banner);
+                }}
+                
+                banner.html(
+                    "<div class='flex items-center gap-3'>" +
+                    "<span class='material-symbols-outlined text-primary animate-pulse'>play_circle</span>" +
+                    "<span class='text-sm md:text-base font-bold tracking-tight'>NOW WATCHING: <span class='text-primary'>" + title + "</span></span>" +
+                    "</div>" +
+                    "<div class='flex items-center gap-2 bg-primary/25 text-primary border border-primary/30 px-3 py-1 rounded-full text-xs font-mono font-bold'>" +
+                    "<span class='material-symbols-outlined text-xs'>schedule</span>" +
+                    "<span id='now-playing-duration'>Runtime: " + durationText + "</span>" +
+                    "</div>"
+                );
+                
+                banner.removeClass("-translate-y-full").addClass("translate-y-0");
+            }}
+            
+            function updateDuration() {{
+                if (video && video.duration && !isNaN(video.duration)) {{
+                    var mins = Math.floor(video.duration / 60);
+                    var secs = Math.floor(video.duration % 60);
+                    var durationText = mins + ":" + (secs < 10 ? "0" : "") + secs;
+                    $("#now-playing-duration").text("Runtime: " + durationText);
+                }}
+            }}
+        }});
+        </script>
+            """
+        else:
+            video_html = f"""
         <!-- Flowplayer Dependencies -->
         <link rel="stylesheet" href="https://releases.flowplayer.org/7.2.7/skin/skin.css">
         <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
@@ -764,7 +856,7 @@ def get_article_detail_body(art, site_name, trending_list):
             }}
         }});
         </script>
-        """
+            """
     else:
         video_html = f"""
         <!-- Featured Image -->

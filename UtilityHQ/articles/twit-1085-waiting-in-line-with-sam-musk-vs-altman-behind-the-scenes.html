@@ -3,7 +3,7 @@
 <html class="dark" lang="en"><head>
 <meta charset="utf-8"/>
 <meta name="monetag" content="7a3a07ab13b4bd940de8ba9bacd115d1">
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
 <title>UtilityHQ | Professional Software Reviews &amp; Optimization</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Geist:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
@@ -139,7 +139,7 @@
       min-height: max(884px, 100dvh);
     }
   </style>
-</head>
+</meta></head>
 <body class="overflow-x-hidden">
 <!-- Top Ad Banner -->
 <div class="w-full bg-surface-container-lowest py-base flex justify-center items-center border-b border-secondary/10 h-[90px]">
@@ -195,24 +195,37 @@
             </div>
             
             
-        <!-- Flowplayer Dependencies -->
-        <link rel="stylesheet" href="https://releases.flowplayer.org/7.2.7/skin/skin.css">
+        <!-- Fluid Player Dependencies -->
         <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-        <script src="https://releases.flowplayer.org/7.2.7/flowplayer.min.js"></script>
+        <script src="https://cdn.fluidplayer.com/v3/current/fluidplayer.min.js"></script>
         
-        <!-- Flowplayer Video Player -->
+        <!-- Fluid Player Video Player -->
         <div class="my-6 rounded-2xl overflow-hidden shadow-2xl border border-outline-variant/30 bg-black">
-            <div class="flowplayer w-full aspect-[16/9]" data-ratio="0.5625" style="background-color: #000;">
-                <video autoplay muted playsinline controls id="article-video">
-                    <source type="video/mp4" src="https://pscrb.fm/rss/p/mgln.ai/e/294/cdn.twit.tv/video/twit/twit1085/twit1085_h264m_1920x1080.mp4">
-                    <source type="application/x-mpegurl" src="https://pscrb.fm/rss/p/mgln.ai/e/294/cdn.twit.tv/video/twit/twit1085/twit1085_h264m_1920x1080.mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
+            <video autoplay muted playsinline controls id="article-video" class="w-full aspect-[16/9]">
+                <source type="video/mp4" src="https://pscrb.fm/rss/p/mgln.ai/e/294/cdn.twit.tv/video/twit/twit1085/twit1085_h264m_1920x1080.mp4">
+                Your browser does not support the video tag.
+            </video>
         </div>
         
         <script>
         $(function() {
+            var fp = fluidPlayer("article-video", {
+                layoutControls: {
+                    autoPlay: true,
+                    mute: true,
+                    fillToContainer: true,
+                    primaryColor: "#4be277"
+                },
+                vastOptions: {
+                    adList: [
+                        {
+                            roll: "preRoll",
+                            vastTag: "https://smooth-survey.com/damUFpz.dOGDNdvXZ/G/US/renma9eugZzU/l-kmPLT/cFxtN/Ducs5nNwjBEgt-NNzGEG0/N/z/kg2tNzQV"
+                        }
+                    ]
+                }
+            });
+
             var video = $("#article-video")[0];
             if (video) {
                 // When video starts playing, show the now playing banner
@@ -270,7 +283,7 @@
             }
         });
         </script>
-        
+            
             
             
         <!-- You May Also Like / Similar Videos Section -->
